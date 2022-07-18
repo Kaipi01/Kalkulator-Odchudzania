@@ -1,13 +1,13 @@
 @use "variables" as var;
 @use "extends/hidden" as hidden;
 
-.theme-btn {
+.themeBtn {
   display: block;
   margin: 0 auto;
   cursor: pointer;
   justify-self: flex-end;
-  width: 85px;
-  height: 40px;
+  width: 75px;
+  height: 35px;
   border-radius: 20px;
   border: 2px solid var.$primaryLight;
   background: rgb(109, 165, 255);
@@ -18,23 +18,6 @@
     @extend %hidden;
   }
 
-  &::after {
-    content: "";
-    position: absolute;
-    display: block;
-    top: 4px;
-    transform: translateX(6px);
-    width: 27px;
-    height: 27px;
-    border-radius: 50%;
-    background: rgb(234, 255, 0);
-    transition: all 0.5s ease-in-out;
-  }
-}
-
-body.dark .theme-btn {
-  background: rgb(2, 0, 46);
-
   &:hover {
     border-color: var.$primaryDark;
   }
@@ -44,12 +27,22 @@ body.dark .theme-btn {
     position: absolute;
     display: block;
     top: 4px;
-    transform: translateX(47px);
-    width: 27px;
-    height: 27px;
+    transform: translateX(7px);
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: rgb(234, 255, 0);
     transition: all 0.5s ease-in-out;
+  }
+}
+
+// dark theme
+
+body.dark .themeBtn {
+  background: rgb(2, 0, 46);
+
+  &::after {
+    transform: translateX(40px);
   }
 
   &::before {
@@ -57,9 +50,9 @@ body.dark .theme-btn {
     position: absolute;
     display: block;
     top: 1px;
-    transform: translateX(38px);
-    width: 27px;
-    height: 27px;
+    transform: translateX(33px);
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: rgb(2, 0, 46);
     z-index: 1;
