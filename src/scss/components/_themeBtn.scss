@@ -1,0 +1,68 @@
+@use "variables" as var;
+@use "extends/hidden" as hidden;
+
+.theme-btn {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  justify-self: flex-end;
+  width: 85px;
+  height: 40px;
+  border-radius: 20px;
+  border: 2px solid var.$primaryLight;
+  background: rgb(109, 165, 255);
+  position: relative;
+  transition: all 0.3s ease-in-out;
+
+  &__info--hidden {
+    @extend %hidden;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 4px;
+    transform: translateX(6px);
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: rgb(234, 255, 0);
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+body.dark .theme-btn {
+  background: rgb(2, 0, 46);
+
+  &:hover {
+    border-color: var.$primaryDark;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 4px;
+    transform: translateX(47px);
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: rgb(234, 255, 0);
+    transition: all 0.5s ease-in-out;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 1px;
+    transform: translateX(38px);
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: rgb(2, 0, 46);
+    z-index: 1;
+    transition: all 1s ease-in-out;
+  }
+}
