@@ -1,2 +1,159 @@
+.bgCircle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgb(0, 255, 30);
+  z-index: -1;
+}
+.bgCircle--topLeft {
+  background-color: rgb(141, 255, 79);
+  width: 70vw;
+  height: 70vw;
+  top: -70%;
+  left: -30%;
+}
+.bgCircle--center {
+  width: 40vw;
+  height: 40vw;
+  top: 10%;
+  right: 20%;
+}
+.bgCircle--centerRight {
+  background-color: rgb(141, 255, 79);
+  width: 20vw;
+  height: 20vw;
+  top: 50%;
+  right: 10%;
+}
+.bgCircle--bottomLeft {
+  width: 50vw;
+  height: 50vw;
+  top: 165%;
+  left: -20%;
+}
+.bgCircle--bottomRight {
+  width: 35vw;
+  height: 35vw;
+  top: 248%;
+  right: 2%;
+}
+
+body.dark .bgCircle--center,
+body.dark .bgCircle--bottomRight {
+  background: rgb(11, 88, 20);
+}
+
+body.dark .bgCircle--centerRight,
+body.dark .bgCircle--bottomLeft,
+body.dark .bgCircle--topLeft {
+  background: rgb(2, 52, 9);
+}
+
+.themeBtn__info--hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.themeBtn {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  justify-self: flex-end;
+  width: 75px;
+  height: 35px;
+  border-radius: 20px;
+  border: 2px solid rgb(0, 142, 17);
+  background: rgb(109, 165, 255);
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.themeBtn:hover {
+  border-color: rgb(0, 255, 30);
+}
+.themeBtn::after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 4px;
+  transform: translateX(7px);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgb(234, 255, 0);
+  transition: all 0.5s ease-in-out;
+}
+
+body.dark .themeBtn {
+  background: rgb(2, 0, 46);
+}
+body.dark .themeBtn::after {
+  transform: translateX(40px);
+}
+body.dark .themeBtn::before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 1px;
+  transform: translateX(33px);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgb(2, 0, 46);
+  z-index: 1;
+  transition: all 1s ease-in-out;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 21px;
+}
+
+body {
+  background: rgb(168, 255, 120);
+  background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));
+  color: rgb(0, 0, 0);
+  font-family: Helvetica, Arial, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body.dark {
+  background: rgb(26, 26, 26);
+  background: linear-gradient(to right, rgb(14, 14, 14), rgb(34, 34, 34));
+  color: rgb(255, 255, 255);
+}
+
+.mainHeader__h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 55px;
+  letter-spacing: 5px;
+  padding: 20px 0;
+}
+
+.btn {
+  padding: 20px 65px;
+  font-size: 25px;
+  cursor: pointer;
+  border-radius: 15px;
+  background: rgb(0, 142, 17);
+  border: none;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 0.3s ease-in-out;
+}
+.btn:hover, .btn:focus, .btn:active {
+  color: rgb(0, 0, 0);
+  background: rgb(0, 255, 30);
+  box-shadow: rgb(0, 142, 17) -5px 5px, rgb(0, 142, 17) -10px 10px, rgb(0, 142, 17) -15px 15px;
+  transform: translate(10px, -15px);
+}
 
 /*# sourceMappingURL=/main.77bb5cfd.css.map */
