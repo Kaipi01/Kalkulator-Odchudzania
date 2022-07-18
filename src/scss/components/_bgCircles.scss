@@ -1,0 +1,56 @@
+@use "variables" as var;
+
+.bgCircle {
+  position: absolute;
+  border-radius: 50%;
+  background: var.$primaryDark;
+  z-index: -1;
+
+  &--topLeft {
+    background-color: var.$circleLight;
+    width: 70vw;
+    height: 70vw;
+    top: -70%;
+    left: -30%;
+  }
+
+  &--center {
+    width: 40vw;
+    height: 40vw;
+    top: 10%;
+    right: 20%;
+  }
+
+  &--centerRight {
+    background-color: var.$circleLight;
+    width: 20vw;
+    height: 20vw;
+    top: 50%;
+    right: 10%;
+  }
+
+  &--bottomLeft {
+    width: 50vw;
+    height: 50vw;
+    top: 165%;
+    left: -20%;
+  }
+
+  &--bottomRight {
+    width: 35vw;
+    height: 35vw;
+    top: 248%;
+    right: 2%;
+  }
+}
+
+body.dark .bgCircle--center,
+body.dark .bgCircle--bottomRight {
+  background: var.$circleDark2;
+}
+
+body.dark .bgCircle--centerRight,
+body.dark .bgCircle--bottomLeft,
+body.dark .bgCircle--topLeft {
+  background: var.$circleDark1;
+}
