@@ -1,1 +1,69 @@
+@use "variables" as var;
+@use "components/bgCircles";
+@use "components/themeBtn";
+@use "extends/hidden" as hidden;
 
+//---------------GENERAL SETTINGS---------------
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 21px;
+}
+
+//---------------BODY STYLING---------------
+
+body {
+  background: var.$bgLight;
+  background: var.$bgGradientLight;
+  color: var.$fontLight;
+  font-family: Helvetica, Arial, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+
+  &.dark {
+    background: var.$bgDark;
+    background: var.$bgGradientDark;
+    color: var.$fontDark;
+  }
+}
+
+//---------------MAIN HEADER---------------
+
+.mainHeader__h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 55px;
+  letter-spacing: 5px;
+  padding: 20px 0;
+}
+
+//---------------BUTTON STYLING---------------
+
+.btn {
+  padding: 20px 65px;
+  font-size: 25px;
+  cursor: pointer;
+  border-radius: 15px;
+  background: var.$primaryLight;
+  border: none;
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: rgb(0, 0, 0);
+    background: var.$primaryDark;
+    box-shadow: var.$primaryLight -5px 5px, var.$primaryLight -10px 10px,
+      var.$primaryLight -15px 15px;
+    transform: translate(10px, -15px);
+  }
+}
+
+//---------------CALCULATOR----------------
+//---------------RESULT SECTION---------------
