@@ -1,0 +1,24 @@
+//---------------DARK THEME---------------
+
+$primaryDark: rgb(0, 255, 30);
+$secondaryDark: rgba(0, 255, 30, 0.38);
+$bgDark: rgb(26, 26, 26);
+$circleDark1: rgb(2, 52, 9);
+$circleDark2: rgb(11, 88, 20);
+$bgGradientDark: linear-gradient(to right, rgb(14, 14, 14), rgb(34, 34, 34));
+$fontDark: rgb(255, 255, 255);
+$inputsDark: rgba(255, 255, 255, 0.092);
+
+//---------------LIGHT THEME---------------
+
+$primaryLight: rgb(0, 142, 17);
+$secondaryLight: rgba(0, 142, 17, 0.38);
+$fontLight: rgb(0, 0, 0);
+$bgLight: rgb(168, 255, 120);
+$bgGradientLight: linear-gradient(
+  to right,
+  rgb(168, 255, 120),
+  rgb(120, 255, 214)
+);
+$circleLight: rgb(141, 255, 79);
+$inputsLight: rgba(255, 255, 255, 0.491);
