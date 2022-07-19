@@ -1,0 +1,70 @@
+@use "variables" as var;
+@use "extends/hidden" as hidden;
+
+.fieldset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+  width: 400px;
+  height: 200px;
+  background: var.$inputsLight;
+  padding-bottom: 50px;
+  padding-top: 70px;
+  border-radius: 30px;
+  border: none;
+  position: relative;
+  backdrop-filter: blur(12px);
+
+  &:nth-child(5) {
+    background-color: var.$selectLight;
+    backdrop-filter: none;
+    width: 845px;
+  }
+
+  &__legend {
+    font-size: 30px;
+    position: absolute;
+    top: 25px;
+    left: 40px;
+  }
+
+  &__label {
+    @extend %hidden;
+  }
+
+  &__radioContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+  }
+
+  &__inputError {
+    color: rgb(139, 0, 0);
+    font-weight: bold;
+    position: absolute;
+    top: 140px;
+
+    &--hidden {
+      @extend %hidden;
+    }
+  }
+}
+
+// dark theme
+
+body.dark .fieldset {
+  background: var.$inputsDark;
+
+  &:nth-child(5) {
+    background-color: var.$selectDark;
+  }
+
+  &__inputError {
+    color: rgb(255, 0, 0);
+  }
+}
