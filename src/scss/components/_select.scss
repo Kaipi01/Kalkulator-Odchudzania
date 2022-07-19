@@ -1,0 +1,96 @@
+@use "variables" as var;
+
+.select {
+  cursor: pointer;
+  padding: 5px;
+  width: 700px;
+  color: var.$secondaryLight;
+  text-align: center;
+  border-bottom: 3px solid var.$secondaryLight;
+  transition: all 0.2s ease-in-out;
+
+  &:focus,
+  &:active {
+    color: var.$primaryLight;
+    outline: none;
+    border-color: var.$primaryLight;
+  }
+
+  &__p {
+    font-size: 24px;
+  }
+
+  &__list {
+    position: absolute;
+    list-style: none;
+    background: var.$selectLight;
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    top: 175px;
+    z-index: 2;
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__listItem {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    outline: none;
+    padding: 15px 10px;
+    border-bottom: 2px solid var.$secondaryLight;
+
+    &:last-child {
+      border-radius: 30px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var.$primaryLight;
+      border-bottom-color: var.$primaryLight;
+    }
+  }
+}
+
+// dark theme
+
+body.dark .select {
+  color: var.$secondaryDark;
+  border-bottom: 3px solid var.$secondaryDark;
+
+  &:focus,
+  &:active {
+    color: var.$primaryDark;
+    border-color: var.$primaryDark;
+  }
+
+  &__list {
+    background: var.$selectDark;
+  }
+
+  &__listItem {
+    border-bottom: 2px solid var.$secondaryLight;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var.$primaryDark;
+      border-bottom-color: var.$primaryDark;
+    }
+  }
+}
+
+// select icon
+
+.select__icon {
+  position: absolute;
+  top: 85px;
+  right: 90px;
+  font-size: 40px;
+}
