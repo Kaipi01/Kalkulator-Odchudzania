@@ -1,6 +1,7 @@
 @use "variables" as var;
 
 .bgCircle {
+  animation: swim 4s 0.5s ease-in-out infinite;
   position: absolute;
   border-radius: 50%;
   background: var.$primaryDark;
@@ -8,25 +9,34 @@
 
   &--topLeft {
     background-color: var.$circleLight;
+    // width: 70vw;
+    // height: 70vw;
+    // top: -70%;
+    // left: -30%;
     width: 70vw;
     height: 70vw;
-    top: -70%;
-    left: -30%;
+    top: -31vw;
+    left: -32vw;
   }
 
   &--center {
+    animation-delay: 2s;
     width: 40vw;
     height: 40vw;
-    top: 10%;
-    right: 20%;
+    // top: 10%;
+    // right: 20%;
+    top: 4vw;
+    right: 20vw;
   }
 
   &--centerRight {
     background-color: var.$circleLight;
     width: 20vw;
     height: 20vw;
-    top: 50%;
-    right: 10%;
+    // top: 50%;
+    // right: 10%;
+    top: 21vw;
+    right: 10vw;
   }
 
   &--bottomLeft {
@@ -44,6 +54,8 @@
   }
 }
 
+// dark theme
+
 body.dark .bgCircle--center,
 body.dark .bgCircle--bottomRight {
   background: var.$circleDark2;
@@ -53,4 +65,18 @@ body.dark .bgCircle--centerRight,
 body.dark .bgCircle--bottomLeft,
 body.dark .bgCircle--topLeft {
   background: var.$circleDark1;
+}
+
+// animation
+
+@keyframes swim {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(6%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
