@@ -341,13 +341,13 @@ body.dark .inputRange__value {
   color: rgb(0, 142, 17);
 }
 
-body.dark .radioBtn--active {
+body.dark .radioBtn--active .icon-male::before,
+body.dark .radioBtn--active .icon-female::before {
   color: rgb(0, 255, 30);
 }
 
 .icon-male::before,
 .icon-female::before {
-  color: rgb(0, 0, 0);
   font-size: 70px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -475,7 +475,7 @@ body.dark {
   font-size: 35px;
   margin-bottom: 20px;
 }
-.calculator__submit-btn {
+.calculator__submitBtn {
   align-self: center;
   margin-top: 30px;
 }

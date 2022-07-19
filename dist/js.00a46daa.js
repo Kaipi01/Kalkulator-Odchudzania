@@ -117,37 +117,38 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"index.js":[function(require,module,exports) {
+})({"js/changeTheme.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.changeTheme = changeTheme;
 var theme = localStorage.getItem("theme");
 if (theme === "dark") document.body.classList.add("dark");else document.body.classList.add("light");
-var themeBtn = document.querySelector(".themeBtn");
-var inputDate = document.querySelectorAll(".inputDate");
-var select = document.querySelector(".select");
-var radioBtns = document.querySelectorAll(".radioBtn");
-var radioBtnFemale = document.querySelector("#female");
-var radioBtnMale = document.querySelector("#male");
-var inputsNumber = document.querySelectorAll(".inputNumber");
-var inputRange = document.querySelector(".inputRange");
-var gender;
-radioBtns.forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    console.log("radioBtn clicked");
 
-    if (btn.id === "female") {
-      radioBtnFemale.classList.add("radioBtn--active");
-      radioBtnMale.classList.remove("radioBtn--active");
-      gender = "female";
-    } else {
-      radioBtnMale.classList.add("radioBtn--active");
-      radioBtnFemale.classList.remove("radioBtn--active");
-      gender = "male";
-    }
-  });
-}); // show select list
+function changeTheme() {
+  if (theme === "dark") {
+    document.body.classList.remove("dark");
+    document.body.classList.add("light");
+    theme = "light";
+  } else {
+    document.body.classList.remove("light");
+    document.body.classList.add("dark");
+    theme = "dark";
+  }
 
-select.addEventListener("click", function () {
+  localStorage.setItem("theme", theme);
+}
+},{}],"js/showList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showList = showList;
+
+function showList() {
   var selectList = document.querySelector(".select__list");
   var selectListItem = document.querySelector(".select__listItem");
   selectList.classList.toggle("select__list--active");
@@ -180,7 +181,120 @@ select.addEventListener("click", function () {
       selectList.classList.remove("select__list--active");
     }
   }
+}
+},{}],"js/getGender.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+exports.gender = void 0;
+exports.getGender = getGender;
+var radioBtnFemale = document.querySelector("#female");
+var radioBtnMale = document.querySelector("#male");
+var gender;
+exports.gender = gender;
+
+function getGender(btn) {
+  if (btn.id === "female") {
+    radioBtnFemale.classList.add("radioBtn--active");
+    radioBtnMale.classList.remove("radioBtn--active");
+    exports.gender = gender = "female";
+  } else {
+    radioBtnMale.classList.add("radioBtn--active");
+    radioBtnFemale.classList.remove("radioBtn--active");
+    exports.gender = gender = "male";
+  }
+}
+},{}],"js/checkInputNumber.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.checkInputNumber = checkInputNumber;
+
+function checkInputNumber(e) {
+  if (e.target.value < 1) {
+    e.target.value = 1;
+  } else {
+    if (e.target.name === "age") {
+      if (e.target.value > 199) e.target.value = 199;
+    } else if (e.target.value > 999) e.target.value = 999;
+  }
+}
+},{}],"js/showResults.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showResults = showResults;
+
+var _getGender = require("./getGender");
+
+function showResults() {
+  var ageInputValue = document.querySelector("#ageValue");
+  var weightInputValue = document.querySelector("#weightValue");
+  var heightInputValue = document.querySelector("#heightValue");
+  var selectListItem = document.querySelectorAll(".select__listItem");
+  var selectValue = document.querySelector(".select");
+  var targWeightInputValue = document.querySelector("#targWeightValue");
+  var startDateInputValue = document.querySelector("#startDate");
+  var endDateInputValue = document.querySelector("#endDate");
+  var age = Number(ageInputValue.value);
+  var weight = Number(weightInputValue.value);
+  var height = Number(heightInputValue.value);
+  var targWeight = Number(targWeightInputValue.value);
+  var startDate = startDateInputValue.value;
+  var endDate = endDateInputValue.value;
+  var activity;
+  selectListItem.forEach(function (li) {
+    if (li.textContent === selectValue.textContent) {
+      activity = li.value;
+    }
+  });
+  console.log(age);
+  console.log(_getGender.gender);
+  console.log(weight);
+  console.log(height);
+  console.log(activity);
+  console.log(targWeight);
+  console.log(startDate);
+  console.log(endDate);
+}
+},{"./getGender":"js/getGender.js"}],"js/index.js":[function(require,module,exports) {
+"use strict";
+
+var _changeTheme = require("./changeTheme");
+
+var _showList = require("./showList");
+
+var _getGender = require("./getGender");
+
+var _checkInputNumber = require("./checkInputNumber");
+
+var _showResults = require("./showResults");
+
+"use strict";
+
+var themeBtn = document.querySelector(".themeBtn");
+var inputDate = document.querySelectorAll(".inputDate");
+var select = document.querySelector(".select");
+var radioBtns = document.querySelectorAll(".radioBtn");
+var inputsNumber = document.querySelectorAll(".inputNumber");
+var inputRange = document.querySelector(".inputRange");
+var submitBtn = document.querySelector(".calculator__submitBtn");
+submitBtn.addEventListener("click", _showResults.showResults); // change radio input color and check radio value
+
+radioBtns.forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    (0, _getGender.getGender)(btn);
+  });
+}); // show select list
+
+select.addEventListener("click", _showList.showList); // change value in input range
+
 inputRange.addEventListener("click", function () {
   changeHeightValue();
 });
@@ -191,18 +305,13 @@ inputRange.addEventListener("keydown", function (e) {
   if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
     changeHeightValue();
   }
-});
+}); // chech number in input type number
+
 inputsNumber.forEach(function (input) {
   input.addEventListener("input", function (e) {
-    if (e.target.value < 1) {
-      e.target.value = 1;
-    } else {
-      if (e.target.name === "age") {
-        if (e.target.value > 199) e.target.value = 199;
-      } else if (e.target.value > 999) e.target.value = 999;
-    }
+    (0, _checkInputNumber.checkInputNumber)(e);
   });
-}); // Funkcja pokazująca wartość inputa typu range
+}); // show height value
 
 function changeHeightValue() {
   var inputRangeValue = document.querySelector(".inputRange__value");
@@ -210,28 +319,14 @@ function changeHeightValue() {
 } //change theme on a page
 
 
-themeBtn.addEventListener("click", function () {
-  console.log("click");
-
-  if (theme === "dark") {
-    document.body.classList.remove("dark");
-    document.body.classList.add("light");
-    theme = "light";
-  } else {
-    document.body.classList.remove("light");
-    document.body.classList.add("dark");
-    theme = "dark";
-  }
-
-  localStorage.setItem("theme", theme);
-}); //focus on date type input
+themeBtn.addEventListener("click", _changeTheme.changeTheme); //focus on date type input
 
 inputDate.forEach(function (input) {
   return input.addEventListener("change", function () {
     input.classList.add("inputDate--focus");
   });
 });
-},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./changeTheme":"js/changeTheme.js","./showList":"js/showList.js","./getGender":"js/getGender.js","./checkInputNumber":"js/checkInputNumber.js","./showResults":"js/showResults.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -435,5 +530,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/index.js"], null)
+//# sourceMappingURL=/js.00a46daa.js.map
