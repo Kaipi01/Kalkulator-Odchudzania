@@ -1,0 +1,27 @@
+@use "variables" as var;
+
+.radioBtn {
+  border: none;
+  background: transparent;
+
+  &--active {
+    color: var.$primaryLight;
+  }
+}
+
+body.dark .radioBtn--active {
+  color: var.$primaryDark;
+}
+
+.icon-male::before,
+.icon-female::before {
+  color: var.$fontLight;
+  font-size: 70px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+body.dark .icon-male::before,
+body.dark .icon-female::before {
+  color: var.$fontDark;
+}
