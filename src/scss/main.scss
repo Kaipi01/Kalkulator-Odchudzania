@@ -1,7 +1,12 @@
 @use "variables" as var;
+@use "extends/hidden" as hidden;
 @use "components/bgCircles";
 @use "components/themeBtn";
-@use "extends/hidden" as hidden;
+@use "components/button";
+@use "components/fieldset";
+@use "components/inputs";
+@use "components/radioBtn";
+@use "components/select";
 
 //---------------GENERAL SETTINGS---------------
 
@@ -38,32 +43,38 @@ body {
   text-align: center;
   font-size: 55px;
   letter-spacing: 5px;
-  padding: 20px 0;
-}
-
-//---------------BUTTON STYLING---------------
-
-.btn {
-  padding: 20px 65px;
-  font-size: 25px;
-  cursor: pointer;
-  border-radius: 15px;
-  background: var.$primaryLight;
-  border: none;
-  color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  transition: all 0.3s ease-in-out;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: rgb(0, 0, 0);
-    background: var.$primaryDark;
-    box-shadow: var.$primaryLight -5px 5px, var.$primaryLight -10px 10px,
-      var.$primaryLight -15px 15px;
-    transform: translate(10px, -15px);
-  }
+  padding: 26px 0;
 }
 
 //---------------CALCULATOR----------------
+
+.calculator {
+  max-width: 1500px;
+  margin: 30px auto 80px auto;
+
+  &__header {
+    padding: 20px 0;
+  }
+
+  &__h2 {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+
+  &__submit-btn {
+    align-self: center;
+    margin-top: 30px;
+  }
+}
+
+// FORM STYLING
+
+.form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 45px;
+}
+
 //---------------RESULT SECTION---------------
