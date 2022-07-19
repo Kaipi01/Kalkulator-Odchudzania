@@ -118,10 +118,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-// "use strict";
+"use strict";
+
 var themeBtn = document.querySelector(".themeBtn");
+var inputDate = document.querySelectorAll(".inputDate");
+var select = document.querySelector(".select");
 var theme = localStorage.getItem("theme");
-if (theme === "dark") document.body.classList.add("dark");else document.body.classList.add("light"); //Funkcja zmienijąca motyw na stronie
+if (theme === "dark") document.body.classList.add("dark");else document.body.classList.add("light"); //change theme on a page
 
 themeBtn.addEventListener("click", function () {
   console.log("click");
@@ -137,6 +140,47 @@ themeBtn.addEventListener("click", function () {
   }
 
   localStorage.setItem("theme", theme);
+}); //focus on date type input
+
+inputDate.forEach(function (input) {
+  return input.addEventListener("change", function () {
+    input.classList.add("inputDate--focus");
+  });
+}); // show select list
+
+select.addEventListener("click", function () {
+  var selectList = document.querySelector(".select__list");
+  var selectListItem = document.querySelector(".select__listItem");
+  selectList.classList.toggle("select__list--active");
+  selectListItem.forEach(function (item) {
+    item.addEventListener("click", function () {
+      select.textContent = item.textContent;
+    });
+  });
+  selectListItem.forEach(function (item) {
+    item.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        select.textContent = item.textContent;
+      }
+    });
+  });
+  window.addEventListener("click", function (e) {
+    closeList(e);
+  });
+  window.addEventListener("touch", function (e) {
+    closeList(e);
+  });
+  select.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") closeList();
+  }); // hide select list
+
+  function closeList(e) {
+    console.log(e);
+
+    if (!e.target.classList.contains("select__list")) {
+      selectList.classList.remove("select__list--active");
+    }
+  }
 });
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -166,7 +210,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50392" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61530" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

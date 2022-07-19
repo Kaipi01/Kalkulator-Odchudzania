@@ -45,104 +45,97 @@
 
             <!-- AGE INPUT -->
 
-            <fieldset class="form__fieldset">
-                <legend class="form__legend">Wiek</legend>
-                <label class="form__label--hidden" for="ageValue">
+            <fieldset class="fieldset">
+                <legend class="fieldset__legend">Wiek</legend>
+                <label class="fieldset__label" for="ageValue">
                     Podaj swój wiek, liczony w latach
                 </label>
-                <input class="form__inputNumber" type="number" name="age" id="ageValue" value="" aria-required="true" placeholder="Podaj swój wiek" aria-placeholder="Podaj swój wiek">
-                <div class="form__btnContainer">
-                    <button class="form__btnContainerArrow form__btnContainerArrow--up">&utrif;</button>
-                    <button class="form__btnContainerArrow form__btnContainerArrow--down">&dtrif;</button>
-                </div>
-                <p role="alert" class="form__inputError form__inputError--hidden">
+                <input class="fieldset__input input inputNumber" type="number" name="age" id="ageValue" value="" aria-required="true" placeholder="Podaj swój wiek" aria-placeholder="Podaj swój wiek">
+                <p role="alert" class="fieldset__inputError fieldset__inputError--hidden">
                     Prosze wypełnić to pole!
                 </p>
             </fieldset>
 
             <!-- GENDER INPUT -->
 
-            <fieldset class="form__fieldset">
-                <legend class="form__legend">Płeć</legend>
-                <div class="form__radioContainer">
-                    <label class="form__label--hidden" for="male">Mężczyzna</label>
-                    <button type="radio" name="male" id="male" role="radio" class="form__btnRadio">
+            <fieldset class="fieldset">
+                <legend class="fieldset__legend">Płeć</legend>
+                <div class="fieldset__radioContainer">
+                    <label class="fieldset__label" for="male">Mężczyzna</label>
+                    <button type="radio" name="male" id="male" role="radio" class="radioBtn">
                         <i class="icon-male"></i>
                     </button>
-                    <label class="form__label--hidden" for="female">Kobieta</label>
-                    <button type="radio" role="radio" name="female" id="female" class="form__btnRadio">
+                    <label class="fieldset__label" for="female">Kobieta</label>
+                    <button type="radio" role="radio" name="female" id="female" class="radioBtn">
                         <i class="icon-female"></i>
                     </button>
                 </div>
-                <p role="alert" class="form__inputError  form__inputError--hidden">
+                <p role="alert" class="fieldset__inputError  fieldset__inputError--hidden">
                     Prosze wybrać jedną z opcji!
                 </p>
             </fieldset>
 
             <!-- WEIGHT INPUT -->
 
-            <fieldset class="form__fieldset">
-                <legend class="form__legend">Waga (kg)</legend>
-                <label class="hidden form__label--hidden" for="weightValue">
+            <fieldset class="fieldset">
+                <legend class="fieldset__legend">Waga (kg)</legend>
+                <label class="fieldset__label" for="weightValue">
                     Podaj swoją wage liczoną w kilogramach
                 </label>
-                <input class="form__inputNumber" type="number" name="weight" id="weightValue" value="" aria-required="true" placeholder="Podaj swoją wage" aria-placeholder="Podaj swoją wage">
-                <div class="form__btnContainer">
+                <input class="fieldset__input input inputNumber" type="number" name="weight" id="weightValue" value="" aria-required="true" placeholder="Podaj swoją wage" aria-placeholder="Podaj swoją wage">
+                <!-- <div class="form__btnContainer">
                     <button class="form__btnContainerArrow form__btnContainerArrow--up">&utrif;</button>
                     <button class="form__btnContainerArrow form__btnContainerArrow--down">&dtrif;</button>
-                </div>
-                <p role="alert" class="form__inputError form__inputError--hidden">
+                </div> -->
+                <p role="alert" class="fieldset__inputError fieldset__inputError--hidden">
                     Prosze wypełnić to pole!
                 </p>
             </fieldset>
 
             <!-- HEIGHT INPUT -->
 
-            <fieldset class="form__fieldset">
-                <legend class="form__legend">Wzrost (cm)</legend>
-                <label class="form__label--hidden" for="heightValue">
+            <fieldset class="fieldset">
+                <legend class="fieldset__legend">Wzrost (cm)</legend>
+                <label class="fieldset__label" for="heightValue">
                     Podaj swój wzrost liczony w centymetrach
                 </label>
-                <input type="range" name="height" class="form__inputRange" id="heightValue" min="1" max="300">
-                <p class="form__rangeValue">151</p>
+                <input type="range" name="height" class="inputRange" id="heightValue" min="1" max="300">
+                <p class="inputRange__value">151</p>
             </fieldset>
 
-            <!-- ACTIVITY INPUT -->
+            <!-- ACTIVITY SELECT -->
 
-            <fieldset class="form__fieldset">
-                <legend class="form__legend">Aktywność fizyczna</legend>
-                <label class="form__label--hidden" for="activity">
+            <fieldset class="fieldset">
+                <legend class="fieldset__legend">Aktywność fizyczna</legend>
+                <label class="fieldset__label" for="activity">
                     Wybierz z listy Twoją aktualną aktywność fizyczną
                 </label>
-                <div role="select" name="activity" class="form__select" id="activity" tabindex="0" aria-required="true" aria-placeholder="Wybierz z listy Twoją aktualną aktywność fizyczną" placeholder="Wybierz z listy Twoją aktualną aktywność fizyczną">
-                    <p class="form__select-p">
-                        Wybierz z listy Twoją aktualną aktywność fizyczną
+                <div role="select" name="activity" class="select" id="activity" tabindex="0" aria-required="true" aria-placeholder="Wybierz z listy Twoją aktualną aktywność fizyczną" placeholder="Wybierz z listy Twoją aktualną aktywność fizyczną">
+                    <p class="select__p">
+                        Wybierz z listy Twoją aktualną aktywność fizyczną <span class="select__icon" aria-hidden="true">&dtrif;</span>
                     </p>
                 </div>
-                <div id="activityArrow" class="form__btnContainer">
-                    <button class="form__btnContainerArrow form__btnContainerArrow--down">&dtrif;</button>
-                </div>
-                <p role="alert" class="form__inputError form__inputError--hidden">
+                <p role="alert" class="fieldset__inputError fieldset__inputError--hidden">
                     Prosze wybrać jedną z opcji!
                 </p>
 
-                <ul class="form__selectList">
-                    <li class="form__listItem" tabindex="0" value="1">
+                <ul class="select__list">
+                    <li class="select__listItem" tabindex="0" value="1">
                         Brak aktywności fizycznej, chory, leżący
                     </li>
-                    <li class="form__listItem" tabindex="0" value="2">
+                    <li class="select__listItem" tabindex="0" value="2">
                         Lekka aktywność Pracownik biurowy, którego aktywność związana jest wyłącznie z obowiązkami
                         domowymi
                     </li>
-                    <li class="form__listItem" tabindex="0" value="3">
+                    <li class="select__listItem" tabindex="0" value="3">
                         Średnia aktywność (aktywność - ok. 280 minut tygodniowo) Pracownik biurowy, trenujący 2-3 razy w
                         tygodniu przez minimum godzinę
                     </li>
-                    <li class="form__listItem" tabindex="0" value="4">
+                    <li class="select__listItem" tabindex="0" value="4">
                         Wysoka aktywność (aktywność - ok. 420 minut tygodniowo) Pracownik biurowy, trenujący 3-4 razy w
                         tygodniu przez minimum godzinę
                     </li>
-                    <li class="form__listItem" tabindex="0" value="5">
+                    <li class="select__listItem" tabindex="0" value="5">
                         Bardzo wysoka aktywność fizyczna. Zawodowy sportowiec, trenujący minimum 6 godzin tygodniowo lub
                         osoba ciężko pracująca fizycznie
                     </li>
@@ -151,57 +144,53 @@
 
             <!-- TARGET WEIGHT -->
 
-            <fieldset class="form__fieldset">
-                <legend class="form__legend">Docelowa waga (kg)</legend>
-                <label class="form__label--hidden" for="targWeightValue">
+            <fieldset class="fieldset">
+                <legend class="fieldset__legend">Docelowa waga (kg)</legend>
+                <label class="fieldset__label" for="targWeightValue">
                     Podaj wage do której dążysz
                 </label>
-                <input type="number" name="targWeightValue" class="form__inputNumber" id="targWeightValue" value="" aria-required="true" placeholder="Podaj wage, do której dążysz" aria-placeholder="Podaj wage do której dążysz">
-                <div class="form__btnContainer">
-                    <button class="form__btnContainerArrow form__btnContainerArrow--up">&utrif;</button>
-                    <button class="form__btnContainerArrow form__btnContainerArrow--down">&dtrif;</button>
-                </div>
-                <p role="alert" class="form__inputError form__inputError--hidden">
+                <input type="number" name="targWeightValue" class="fieldset__input input inputNumber" id="targWeightValue" value="" aria-required="true" placeholder="Podaj docelową wage" aria-placeholder="Podaj wage do której dążysz">
+                <p role="alert" class="fieldset__inputError fieldset__inputError--hidden">
                     Prosze wypełnić to pole!
                 </p>
             </fieldset>
 
             <!-- START DATE -->
 
-            <fieldset class="form__fieldset">
+            <fieldset class="fieldset">
 
-                <legend class="form__legend">Data rozpoczęcia</legend>
-                <label class="form__label--hidden" for="startdate">
+                <legend class="fieldset__legend">Data rozpoczęcia</legend>
+                <label class="fieldset__label" for="startdate">
                     Podaj date w której rozpocznieszodchudzanie
                 </label>
-                <input type="date" class="form__inputDate" name="startDate" id="startDate" aria-required="true">
-                <p role="alert" class="form__inputError form__inputError--hidden">
+                <input type="date" class="fieldset__input input inputDate" name="startDate" id="startDate" aria-required="true">
+                <p role="alert" class="fieldset__inputError fieldset__inputError--hidden">
                     Prosze wypełnić to pole!
                 </p>
-                <p role="alert" class="form__inputError form__inputError--hidden">
+                <p role="alert" class="fieldset__inputError fieldset__inputError--hidden">
                     Ta data jest mniejsza niż dzisiejsza!
                 </p>
             </fieldset>
 
             <!-- END DATE -->
 
-            <fieldset class="form__fieldset">
-                <legend class="form__legend">Data zakończenia</legend>
-                <label class="form__label--hidden" for="endDate">
+            <fieldset class="fieldset">
+                <legend class="fieldset__legend">Data zakończenia</legend>
+                <label class="fieldset__label" for="endDate">
                     Podaj date zakończenia odchudzania
                 </label>
-                <input type="date" class="form__inputDate" name="endDate" id="endDate" aria-required="true">
-                <p role="alert" class="form__inputError form__inputError--hidden">
+                <input type="date" class="fieldset__input input inputDate" name="endDate" id="endDate" aria-required="true">
+                <p role="alert" class="fieldset__inputError fieldset__inputError--hidden">
                     Prosze wypełnić to pole!
                 </p>
-                <p role="alert" class="form__inputError form__inputError--hidden">
+                <p role="alert" class="fieldset__inputError fieldset__inputError--hidden">
                     Ta data jest mniejsza od daty rozpoczęcia!
                 </p>
             </fieldset>
 
             <!-- SUBMIT BUTTON -->
 
-            <a href="#results"><button class="btn calculator__submit-btn" role="submit" type="submit">Oblicz</button></a>
+            <button class="btn calculator__submit-btn" role="submit" type="submit">Oblicz</button>
 
         </div>
 
