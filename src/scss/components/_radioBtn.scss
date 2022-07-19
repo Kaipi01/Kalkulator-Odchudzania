@@ -10,12 +10,14 @@
 }
 
 body.dark .radioBtn--active {
-  color: var.$primaryDark;
+  .icon-male::before,
+  .icon-female::before {
+    color: var.$primaryDark;
+  }
 }
 
 .icon-male::before,
 .icon-female::before {
-  color: var.$fontLight;
   font-size: 70px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
