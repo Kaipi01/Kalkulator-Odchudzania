@@ -8,7 +8,8 @@
   flex-direction: column;
   text-align: center;
   gap: 10px;
-  width: 400px;
+  max-width: 400px;
+  width: 90%;
   height: 200px;
   background: var.$inputsLight;
   padding-bottom: 50px;
@@ -21,7 +22,8 @@
   &:nth-child(5) {
     background-color: var.$selectLight;
     backdrop-filter: none;
-    width: 845px;
+    max-width: 845px;
+    width: 90%;
   }
 
   &__legend {
