@@ -301,6 +301,15 @@ inputRange.addEventListener("click", function () {
 inputRange.addEventListener("mousemove", function () {
   changeHeightValue();
 });
+inputRange.addEventListener("touchstart", function () {
+  changeHeightValue();
+});
+inputRange.addEventListener("touchend", function () {
+  changeHeightValue();
+});
+inputRange.addEventListener("touchmove", function () {
+  changeHeightValue();
+});
 inputRange.addEventListener("keydown", function (e) {
   if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
     changeHeightValue();
@@ -354,7 +363,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57571" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54311" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
