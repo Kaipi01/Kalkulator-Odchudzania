@@ -9,10 +9,6 @@
 
   &--topLeft {
     background-color: var.$circleLight;
-    // width: 70vw;
-    // height: 70vw;
-    // top: -70%;
-    // left: -30%;
     width: 70vw;
     height: 70vw;
     top: -31vw;
@@ -23,8 +19,6 @@
     animation-delay: 2s;
     width: 40vw;
     height: 40vw;
-    // top: 10%;
-    // right: 20%;
     top: 4vw;
     right: 20vw;
   }
@@ -33,20 +27,19 @@
     background-color: var.$circleLight;
     width: 20vw;
     height: 20vw;
-    // top: 50%;
-    // right: 10%;
     top: 21vw;
     right: 10vw;
   }
 
   &--bottomLeft {
     width: 50vw;
-    height: 50vw;
-    top: 165%;
+    height: 50vw; //TODO: Popraw pozycje kuli, musi być troche niżej
+    top: 165%; // żeby nie pojawiała się nagle po przycisku submit
     left: -20%;
   }
 
   &--bottomRight {
+    background-color: var.$circleLight;
     width: 35vw;
     height: 35vw;
     top: 248%;
