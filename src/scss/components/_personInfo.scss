@@ -1,0 +1,32 @@
+@use "variables" as var;
+@use "extends/mixins" as mixins;
+
+.personInfo {
+  @include mixins.setFlex(row, center, flex-start);
+
+  &__img {
+    width: 200px;
+  }
+
+  &__container {
+    @include mixins.setFlex(column);
+    gap: 30px;
+  }
+
+  &__wrapper {
+  }
+
+  &__title {
+  }
+
+  &__p {
+    &--big {
+    }
+
+    &--bold {
+    }
+
+    &--colored {
+    }
+  }
+}
