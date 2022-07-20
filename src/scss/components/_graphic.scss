@@ -1,0 +1,72 @@
+@use "variables" as var;
+
+.graphic {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
+
+  &__p {
+    font-size: 20px;
+  }
+
+  &__el {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 140px;
+    padding-left: 15px;
+    height: 80px;
+    font-weight: bold;
+    color: #000000;
+    -webkit-clip-path: polygon(
+      85% 0,
+      100% 50%,
+      85% 100%,
+      0% 100%,
+      15% 50%,
+      0% 0%
+    );
+    clip-path: polygon(85% 0, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
+    opacity: 0.3;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &--active {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    &--1 {
+      background: #00ffd9;
+    }
+    &--2 {
+      background: #00c187;
+    }
+    &--3 {
+      background: #008e63;
+    }
+    &--4 {
+      background: #26be00;
+    }
+    &--5 {
+      background: #ffea00;
+    }
+    &--6 {
+      background: #ff9100;
+    }
+    &--7 {
+      background: #ff0000;
+    }
+    &--8 {
+      background: #b00000;
+    }
+  }
+}
