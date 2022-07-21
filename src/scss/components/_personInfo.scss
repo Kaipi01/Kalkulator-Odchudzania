@@ -3,7 +3,12 @@
 
 .personInfo {
   @include mixins.setFlex(row, center, flex-start);
-
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  margin-top: 60px;
+  gap: 50px;
   &__img {
     width: 200px;
   }
@@ -14,19 +19,28 @@
   }
 
   &__wrapper {
+    margin-top: 20px;
   }
 
   &__title {
+    font-size: 1.2rem;
   }
 
   &__p {
+    line-height: 1.7;
+    font-size: 23px;
+
     &--big {
+      font-size: 27px;
+    }
+
+    &--bigger {
+      font-size: 41px;
     }
 
     &--bold {
-    }
-
-    &--colored {
+      font-weight: bold;
+      color: var.$primaryDark;
     }
   }
 }
