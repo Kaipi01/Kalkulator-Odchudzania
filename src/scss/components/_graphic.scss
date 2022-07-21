@@ -9,7 +9,7 @@
   margin: 40px 0;
 
   &__p {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   &__el {
@@ -32,7 +32,7 @@
       0% 0%
     );
     clip-path: polygon(85% 0, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
-    opacity: 0.3;
+    opacity: 0.2;
     transition: all 0.3s ease-in-out;
 
     &:hover {
@@ -41,7 +41,7 @@
 
     &--active {
       opacity: 1;
-      transform: scale(1.2);
+      transform: scale(1.175);
     }
 
     &--1 {
