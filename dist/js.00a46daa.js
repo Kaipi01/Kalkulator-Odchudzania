@@ -263,7 +263,37 @@ function showResults() {
   console.log(startDate);
   console.log(endDate);
 }
-},{"./getGender":"js/getGender.js"}],"js/index.js":[function(require,module,exports) {
+},{"./getGender":"js/getGender.js"}],"js/toolTip.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hideToolTip = hideToolTip;
+exports.showToolTip = showToolTip;
+
+function showToolTip(e) {
+  var modal;
+
+  if (e.target.classList.contains("hintIcon__BMI")) {
+    modal = document.querySelector(".hintIcon__BMI .hintIcon__modal");
+    modal.classList.toggle("hintIcon__modal--active");
+  } else {
+    modal = document.querySelector(".hintIcon__BMR .hintIcon__modal");
+    modal.classList.toggle("hintIcon__modal--active");
+  }
+}
+
+function hideToolTip(e) {
+  var modal = document.querySelectorAll(".hintIcon__modal");
+
+  if (!e.target.classList.contains("hintIcon")) {
+    modal.forEach(function (modal) {
+      modal.classList.remove("hintIcon__modal--active");
+    });
+  }
+}
+},{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _changeTheme = require("./changeTheme");
@@ -276,6 +306,8 @@ var _checkInputNumber = require("./checkInputNumber");
 
 var _showResults = require("./showResults");
 
+var _toolTip = require("./toolTip");
+
 "use strict";
 
 var themeBtn = document.querySelector(".themeBtn");
@@ -285,6 +317,7 @@ var radioBtns = document.querySelectorAll(".radioBtn");
 var inputsNumber = document.querySelectorAll(".inputNumber");
 var inputRange = document.querySelector(".inputRange");
 var submitBtn = document.querySelector(".calculator__submitBtn");
+var hintIcon = document.querySelectorAll(".hintIcon");
 submitBtn.addEventListener("click", _showResults.showResults); // change radio input color and check radio value
 
 radioBtns.forEach(function (btn) {
@@ -293,7 +326,28 @@ radioBtns.forEach(function (btn) {
   });
 }); // show select list
 
-select.addEventListener("click", _showList.showList); // change value in input range
+select.addEventListener("click", _showList.showList); // show tool tip
+
+hintIcon.forEach(function (icon) {
+  icon.addEventListener("touch", function (e) {
+    return (0, _toolTip.showToolTip)(e);
+  });
+  icon.addEventListener("click", function (e) {
+    return (0, _toolTip.showToolTip)(e);
+  });
+  icon.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") (0, _toolTip.showToolTip)(e);
+  });
+});
+window.addEventListener("touch", function (e) {
+  return (0, _toolTip.hideToolTip)(e);
+});
+window.addEventListener("click", function (e) {
+  return (0, _toolTip.hideToolTip)(e);
+});
+window.addEventListener("unfocus", function (e) {
+  return (0, _toolTip.hideToolTip)(e);
+}); // change value in input range
 
 inputRange.addEventListener("click", function () {
   changeHeightValue();
@@ -335,7 +389,7 @@ inputDate.forEach(function (input) {
     input.classList.add("inputDate--focus");
   });
 });
-},{"./changeTheme":"js/changeTheme.js","./showList":"js/showList.js","./getGender":"js/getGender.js","./checkInputNumber":"js/checkInputNumber.js","./showResults":"js/showResults.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./changeTheme":"js/changeTheme.js","./showList":"js/showList.js","./getGender":"js/getGender.js","./checkInputNumber":"js/checkInputNumber.js","./showResults":"js/showResults.js","./toolTip":"js/toolTip.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -363,7 +417,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54311" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61760" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
