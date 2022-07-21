@@ -559,6 +559,12 @@ body.dark .select__listItem:hover, body.dark .select__listItem:focus, body.dark 
   background-color: rgb(188, 255, 185);
   z-index: 2;
 }
+@media only screen and (max-width: 650px) {
+  .hintIcon__modal {
+    right: 0;
+    width: 90vw;
+  }
+}
 .hintIcon__modal--active {
   display: block;
 }
