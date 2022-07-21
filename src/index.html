@@ -193,11 +193,11 @@
                 </p>
             </fieldset>
 
-            <!-- SUBMIT BUTTON -->
-
-            <button class="btn calculator__submitBtn" role="submit" type="submit">Oblicz</button>
-
         </div>
+
+        <!-- SUBMIT BUTTON -->
+
+        <button class="btn calculator__submitBtn" role="submit" type="submit">Oblicz</button>
 
     </main>
 
@@ -226,21 +226,40 @@
                     <img class="personInfo__img" src="./img/male/Prawidłowa masa ciała.svg" alt="">
                     <div class="personInfo__container">
                         <div>
-                            <h4 class="personInfo__title">Twoje dane</h4>
                             <p class="personInfo__p">Płeć: <span class="personInfo__p--bold">Mężczyzna</span></p>
                             <p class="personInfo__p">Wiek: <span class="personInfo__p--bold">21 lat</span></p>
                             <p class="personInfo__p">Wzrost: <span class="personInfo__p--bold">181 cm</span></p>
                             <p class="personInfo__p">Waga: <span class="personInfo__p--bold">78 kg</span></p>
                         </div>
                         <div class="personInfo__bmi">
-                            <h4 class="personInfo__title">Twoje aktualne BMI</h4>
-                            <p class="personInfo__p personInfo__p--big">23.8</p>
-                            <p class="personInfo__p">Prawidłowa masa ciała</p>
+                            <h4 class="personInfo__title">Twoje aktualne
+                                <abbr tabindex="0" class="hintIcon hintIcon__BMI" title="Body Mass Index">
+                                    BMI
+                                    <div class="hintIcon__modal">
+                                        <p>
+                                            <dfn class="hintIcon__dfn">
+                                                Wskaźnik masy ciała (ang. body mass index, BMI)
+                                            </dfn>
+                                            - współczynnik powstały przez
+                                            podzielenie masy
+                                            ciała podanej w kilogramach przez kwadrat wysokości podanej w metrach.
+                                            Klasyfikacja (zakres wartości) wskaźnika BMI
+                                            została opracowana wyłącznie dla dorosłych i nie może być stosowana u
+                                            dzieci.
+                                            Dla oceny prawidłowego rozwoju dziecka
+                                            wykorzystuje się siatki centylowe, które powinny być dostosowane dla danej
+                                            populacji.
+                                        </p>
+                                    </div>
+                                </abbr>
+                            </h4>
+                            <p class="personInfo__p personInfo__p--bold personInfo__p--bigger">23.8</p>
+                            <p class="personInfo__p personInfo__p--bold">Prawidłowa masa ciała</p>
                         </div>
                         <div class="personInfo__weight">
                             <p class="personInfo__p">
                                 Twoja waga powinna wynosić pomiędzy<br>
-                                <span class="personInfo__p--big">
+                                <span class="personInfo__p--big personInfo__p--bold">
                                     62 kg - 81 kg
                                 </span>
                             </p>
@@ -278,8 +297,28 @@
                 <div class="results__dataContainer">
 
                     <div class="results__data">
-                        <h4 class="results__h4">Twój BMR</h4>
-                        <p class="results__p results__p--bold results__p--big">1.853</p>
+                        <h4 class="results__h4">
+                            Twój
+                            <abbr tabindex="0" class="hintIcon hintIcon__BMR" title="Basal Metabolic Rate">
+                                BMR
+                                <div class="hintIcon__modal">
+                                    <p>
+                                        <dfn class="hintIcon__dfn">
+                                            Podstawowa przemiana materii (PPM) albo BMR (ang. Basal metabolic rate)
+                                        </dfn>
+                                        - najmniejsze tempo przemiany materii, zachodzącej w
+                                        organizmie człowieka, niezbędne do podtrzymania podstawowych funkcji życiowych,
+                                        znajdującego się w stanie czuwania, w
+                                        warunkach zupełnego spokoju fizycznego i psychicznego, komfortu cieplnego. W
+                                        zależności od wieku oraz stylu życia
+                                        podstawowa przemiana materii pochłania od 45% do 70% dziennego zapotrzebowania
+                                        energetycznego człowieka.
+                                    </p>
+                                </div>
+                            </abbr>
+                        </h4>
+                        <p class=" results__p results__p--bold results__p--big">1.853
+                        </p>
                     </div>
 
                     <div class="results__data">
@@ -307,14 +346,15 @@
                     <div class="personInfo__container">
                         <div class="personInfo__wrapper">
                             <h4 class="personInfo__title">Waga docelowa</h4>
-                            <p class="personInfo__p personInfo__p--big">67 kg</p>
+                            <p class="personInfo__p personInfo__p--bold personInfo__p--bigger">67 kg</p>
                         </div>
                         <div class="personInfo__wrapper">
                             <h4 class="personInfo__title">
-                                BMI po osiągnięciu tej wagi
+                                <abbr title="Body Mass Index">BMI</abbr>
+                                po osiągnięciu tej wagi
                             </h4>
-                            <p class="personInfo__p personInfo__p--big">21.8</p>
-                            <p class="personInfo__p personInfo__p--colored">
+                            <p class="personInfo__p personInfo__p--bold personInfo__p--bigger">21.8</p>
+                            <p class="personInfo__p personInfo__p--bold">
                                 Prawidłowa masa ciała
                             </p>
                         </div>
@@ -331,7 +371,7 @@
                     <div class="graphic__el graphic__el--3">
                         <p class="graphic__p">17 - 18.49</p>
                     </div>
-                    <div class="graphic__el graphic__el--4">
+                    <div class="graphic__el graphic__el--4 graphic__el--active">
                         <p class="graphic__p">18,5 - 24.9</p>
                     </div>
                     <div class="graphic__el graphic__el--5">
