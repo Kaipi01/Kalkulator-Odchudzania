@@ -10,6 +10,7 @@
 @use "components/select";
 @use "components/graphic";
 @use "components/personInfo";
+@use "components/hintIcon";
 
 //---------------GENERAL SETTINGS---------------
 
@@ -74,8 +75,8 @@ body {
   }
 
   &__submitBtn {
-    align-self: center;
-    margin-top: 30px;
+    display: block;
+    margin: 40px auto 0 auto;
   }
 }
 
@@ -114,7 +115,8 @@ body {
     text-align: center;
     max-width: 375px;
     width: 90%;
-    height: 200px;
+    min-height: 200px;
+    padding: 20px;
     background: var.$secondaryDark;
     border: 5px solid var.$primaryDark;
     border-radius: 30px;
@@ -175,4 +177,8 @@ body.dark .results {
     background: var.$secondaryLight;
     border-color: var.$primaryLight;
   }
+}
+
+abbr {
+  text-decoration: none;
 }
