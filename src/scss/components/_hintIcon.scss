@@ -1,0 +1,59 @@
+@use "variables" as var;
+
+.hintIcon {
+  transition: all 0.2s ease-in-out;
+
+  &__dfn {
+    font-weight: bold;
+    line-height: 1.3;
+  }
+
+  &__modal {
+    color: var.$fontLight;
+    max-width: 600px;
+    border: 4px solid var.$secondaryLight;
+    border-radius: 30px;
+    position: absolute;
+    display: none;
+    padding: 30px;
+    text-align: left;
+    font-weight: normal;
+    background-color: var.$selectLight;
+    z-index: 2;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &::after {
+    border: 1px solid;
+    border-radius: 50%;
+    content: "?";
+    cursor: pointer;
+    font-weight: normal;
+    padding: 0 6px;
+    margin-left: 6px;
+    margin-bottom: 2px;
+  }
+
+  &:focus,
+  &:hover {
+    color: var.$primaryLight;
+    border-color: var.$primaryLight;
+  }
+}
+
+body.dark .hintIcon {
+  &:focus,
+  &:hover {
+    color: var.$primaryDark;
+    border-color: var.$primaryDark;
+  }
+
+  &__modal {
+    color: var.$fontDark;
+    background-color: var.$selectDark;
+    border-color: var.$secondaryDark;
+  }
+}
