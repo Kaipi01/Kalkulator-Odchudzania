@@ -3,6 +3,7 @@ import { showList } from "./showList";
 import { getGender } from "./getGender";
 import { checkInputNumber } from "./checkInputNumber";
 import { showResults } from "./showResults";
+import { showToolTip, hideToolTip } from "./toolTip";
 
 ("use strict");
 
@@ -13,6 +14,7 @@ const radioBtns = document.querySelectorAll(".radioBtn");
 const inputsNumber = document.querySelectorAll(".inputNumber");
 const inputRange = document.querySelector(".inputRange");
 const submitBtn = document.querySelector(".calculator__submitBtn");
+const hintIcon = document.querySelectorAll(".hintIcon");
 
 submitBtn.addEventListener("click", showResults);
 
@@ -25,6 +27,18 @@ radioBtns.forEach((btn) => {
 
 // show select list
 select.addEventListener("click", showList);
+
+// show tool tip
+hintIcon.forEach((icon) => {
+  icon.addEventListener("touch", (e) => showToolTip(e));
+  icon.addEventListener("click", (e) => showToolTip(e));
+  icon.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") showToolTip(e);
+  });
+});
+window.addEventListener("touch", (e) => hideToolTip(e));
+window.addEventListener("click", (e) => hideToolTip(e));
+window.addEventListener("unfocus", (e) => hideToolTip(e));
 
 // change value in input range
 inputRange.addEventListener("click", () => {
