@@ -33,8 +33,8 @@
 
   &--bottomLeft {
     width: 50vw;
-    height: 50vw; //TODO: Popraw pozycje kuli, musi być troche niżej
-    top: 165%; // żeby nie pojawiała się nagle po przycisku submit
+    height: 50vw;
+    top: 175%;
     left: -20%;
   }
 
@@ -42,7 +42,7 @@
     background-color: var.$circleLight;
     width: 35vw;
     height: 35vw;
-    top: 248%;
+    top: 255%;
     right: 2%;
   }
 }
