@@ -1,17 +1,21 @@
 export function showList() {
   const selectList = document.querySelector(".select__list");
-  const selectListItem = document.querySelector(".select__listItem");
+  const select = document.querySelector(".select");
+  const selectP = document.querySelector(".select__p");
+  const selectListItem = document.querySelectorAll(".select__listItem");
   selectList.classList.toggle("select__list--active");
 
   selectListItem.forEach((item) => {
     item.addEventListener("click", () => {
-      select.textContent = item.textContent;
+      selectP.textContent = item.textContent;
+      selectP.classList.add("select__p--active");
     });
   });
   selectListItem.forEach((item) => {
     item.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
-        select.textContent = item.textContent;
+        selectP.textContent = item.textContent;
+        selectP.classList.add("select__p--active");
       }
     });
   });
@@ -21,15 +25,17 @@ export function showList() {
   window.addEventListener("touch", (e) => {
     closeList(e);
   });
-  select.addEventListener("keydown", (e) => {
+  selectList.addEventListener("keydown", (e) => {
     if (e.key === "Enter") closeList();
   });
 
-  // hide select list
+  //hide select list
   function closeList(e) {
-    console.log(e);
-    if (!e.target.classList.contains("select__list")) {
+    if (
+      !e.target.classList.contains("select__p") &&
+      !e.target.classList.contains("select") &&
+      !e.target.classList.contains("select__icon")
+    )
       selectList.classList.remove("select__list--active");
-    }
   }
 }
