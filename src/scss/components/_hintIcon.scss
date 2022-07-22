@@ -11,15 +11,16 @@
   &__modal {
     color: var.$fontLight;
     max-width: 600px;
-    @media only screen and (max-width: 650px) {
+    padding: 30px;
+    @media only screen and (max-width: 768px) {
       right: 0;
       width: 90vw;
+      padding: 20px;
     }
     border: 4px solid var.$secondaryLight;
     border-radius: 30px;
     position: absolute;
     display: none;
-    padding: 30px;
     text-align: left;
     font-weight: normal;
     background-color: var.$selectLight;
@@ -37,7 +38,6 @@
     cursor: pointer;
     font-weight: normal;
     padding: 0 6px;
-    margin-left: 6px;
     margin-bottom: 2px;
   }
 
