@@ -150,17 +150,21 @@ exports.showList = showList;
 
 function showList() {
   var selectList = document.querySelector(".select__list");
-  var selectListItem = document.querySelector(".select__listItem");
+  var select = document.querySelector(".select");
+  var selectP = document.querySelector(".select__p");
+  var selectListItem = document.querySelectorAll(".select__listItem");
   selectList.classList.toggle("select__list--active");
   selectListItem.forEach(function (item) {
     item.addEventListener("click", function () {
-      select.textContent = item.textContent;
+      selectP.textContent = item.textContent;
+      selectP.classList.add("select__p--active");
     });
   });
   selectListItem.forEach(function (item) {
     item.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
-        select.textContent = item.textContent;
+        selectP.textContent = item.textContent;
+        selectP.classList.add("select__p--active");
       }
     });
   });
@@ -170,16 +174,12 @@ function showList() {
   window.addEventListener("touch", function (e) {
     closeList(e);
   });
-  select.addEventListener("keydown", function (e) {
+  selectList.addEventListener("keydown", function (e) {
     if (e.key === "Enter") closeList();
-  }); // hide select list
+  }); //hide select list
 
   function closeList(e) {
-    console.log(e);
-
-    if (!e.target.classList.contains("select__list")) {
-      selectList.classList.remove("select__list--active");
-    }
+    if (!e.target.classList.contains("select__p") && !e.target.classList.contains("select") && !e.target.classList.contains("select__icon")) selectList.classList.remove("select__list--active");
   }
 }
 },{}],"js/getGender.js":[function(require,module,exports) {
@@ -326,7 +326,12 @@ radioBtns.forEach(function (btn) {
   });
 }); // show select list
 
-select.addEventListener("click", _showList.showList); // show tool tip
+select.addEventListener("click", _showList.showList);
+select.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    (0, _showList.showList)();
+  }
+}); // show tool tip
 
 hintIcon.forEach(function (icon) {
   icon.addEventListener("touch", function (e) {
@@ -417,7 +422,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61760" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53947" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
