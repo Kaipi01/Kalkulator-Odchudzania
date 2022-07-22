@@ -1,8 +1,13 @@
 @use "variables" as var;
+@use "extends/mixins" as mixins;
 
 .select {
+  @include mixins.setFlex();
+  flex-wrap: wrap;
+  gap: 10px;
   cursor: pointer;
-  padding: 5px;
+  padding: 15px;
+  padding-bottom: 5px;
   max-width: 700px;
   color: var.$secondaryLight;
   text-align: center;
@@ -12,12 +17,17 @@
   &:focus,
   &:active {
     color: var.$primaryLight;
-    outline: none;
     border-color: var.$primaryLight;
   }
 
   &__p {
     font-size: 24px;
+
+    &--active {
+      color: var.$primaryLight;
+      font-weight: 700;
+      font-size: 22px;
+    }
   }
 
   &__list {
@@ -41,7 +51,6 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     display: block;
-    outline: none;
     padding: 15px 10px;
     border-bottom: 2px solid var.$secondaryLight;
 
@@ -55,6 +64,13 @@
       color: var.$primaryLight;
       border-bottom-color: var.$primaryLight;
     }
+  }
+
+  &__icon {
+    font-size: 2rem;
+    line-height: 0.2;
+    margin-bottom: 5px;
+    z-index: 3;
   }
 }
 
@@ -84,13 +100,8 @@ body.dark .select {
       border-bottom-color: var.$primaryDark;
     }
   }
-}
 
-// select icon
-
-.select__icon {
-  position: absolute;
-  top: 85px;
-  right: 90px;
-  font-size: 40px;
+  &__p--active {
+    color: var.$primaryDark;
+  }
 }
