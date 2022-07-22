@@ -23,6 +23,8 @@
     background-color: var.$selectLight;
     backdrop-filter: none;
     max-width: 845px;
+    height: auto;
+    min-height: 200px;
     width: 90%;
   }
 
@@ -49,7 +51,7 @@
     color: rgb(139, 0, 0);
     font-weight: bold;
     position: absolute;
-    top: 140px;
+    bottom: 20px;
 
     &--hidden {
       @extend %hidden;
