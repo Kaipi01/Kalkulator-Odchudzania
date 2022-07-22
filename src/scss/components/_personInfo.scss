@@ -40,7 +40,11 @@
 
     &--bold {
       font-weight: bold;
-      color: var.$primaryDark;
+      color: var.$primaryLight;
     }
   }
+}
+
+body.dark .personInfo__p--bold {
+  color: var.$primaryDark;
 }
