@@ -27,6 +27,11 @@ radioBtns.forEach((btn) => {
 
 // show select list
 select.addEventListener("click", showList);
+select.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    showList();
+  }
+});
 
 // show tool tip
 hintIcon.forEach((icon) => {
