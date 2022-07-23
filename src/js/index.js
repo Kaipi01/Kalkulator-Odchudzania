@@ -5,8 +5,6 @@ import { checkInputNumber } from "./checkInputNumber";
 import { validateForm } from "./validateForm";
 import { showToolTip, hideToolTip } from "./toolTip";
 
-("use strict");
-
 const themeBtn = document.querySelector(".themeBtn");
 const inputDate = document.querySelectorAll(".inputDate");
 const select = document.querySelector(".select");
