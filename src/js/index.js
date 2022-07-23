@@ -2,7 +2,7 @@ import { changeTheme } from "./changeTheme";
 import { showList } from "./showList";
 import { getGender } from "./getGender";
 import { checkInputNumber } from "./checkInputNumber";
-import { showResults } from "./showResults";
+import { validateForm } from "./validateForm";
 import { showToolTip, hideToolTip } from "./toolTip";
 
 ("use strict");
@@ -16,7 +16,7 @@ const inputRange = document.querySelector(".inputRange");
 const submitBtn = document.querySelector(".calculator__submitBtn");
 const hintIcon = document.querySelectorAll(".hintIcon");
 
-submitBtn.addEventListener("click", showResults);
+submitBtn.addEventListener("click", validateForm);
 
 // change radio input color and check radio value
 radioBtns.forEach((btn) => {
