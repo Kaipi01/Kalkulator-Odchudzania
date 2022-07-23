@@ -75,7 +75,7 @@ export function validateForm() {
   // );
 
   calculate(
-    21,
+    24,
     "male",
     88,
     181,
