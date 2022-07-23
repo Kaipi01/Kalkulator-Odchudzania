@@ -1,7 +1,7 @@
 const radioBtnFemale = document.querySelector("#female");
 const radioBtnMale = document.querySelector("#male");
 
-let gender;
+let gender = "";
 
 export function getGender(btn) {
   if (btn.id === "female") {
