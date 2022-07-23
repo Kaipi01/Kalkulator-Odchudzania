@@ -14,7 +14,14 @@ const inputRange = document.querySelector(".inputRange");
 const submitBtn = document.querySelector(".calculator__submitBtn");
 const hintIcon = document.querySelectorAll(".hintIcon");
 
-submitBtn.addEventListener("click", validateForm);
+submitBtn.addEventListener("click", () => {
+  validateForm();
+  const results = document.querySelector(`.results`);
+  window.scrollTo({
+    top: results.getBoundingClientRect().top + window.pageYOffset,
+    behavior: "smooth",
+  });
+});
 
 // change radio input color and check radio value
 radioBtns.forEach((btn) => {
