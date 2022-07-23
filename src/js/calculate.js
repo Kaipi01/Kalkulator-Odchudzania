@@ -77,7 +77,6 @@ export function calculate(
     CPM,
     weightRange,
     BMR,
-    CPM,
     activityStatus,
     hint,
     targWeight,
