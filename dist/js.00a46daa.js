@@ -192,7 +192,7 @@ exports.gender = void 0;
 exports.getGender = getGender;
 var radioBtnFemale = document.querySelector("#female");
 var radioBtnMale = document.querySelector("#male");
-var gender;
+var gender = "";
 exports.gender = gender;
 
 function getGender(btn) {
@@ -231,39 +231,234 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.showResults = showResults;
 
+function showResults(age, gender, weight, height, activity, targWeight, startDate, endDate) {}
+},{}],"js/calculate.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.calculate = calculate;
+
+var _showResults = require("./showResults");
+
+function calculate(age, gender, weight, height, activity, targWeight, startDate, endDate) {
+  console.log("Wiek: ".concat(age, " lat"));
+  console.log("P\u0142e\u0107: ".concat(gender === "male" ? "Mężczyzna" : "Kobieta"));
+  console.log("Waga: ".concat(weight, " kg"));
+  console.log("Wzrost: ".concat(height, " cm"));
+  console.log("Numer aktywno\u015Bci fizycznej z listy: ".concat(activity));
+  console.log("Waga docelowa: ".concat(targWeight, " kg"));
+  console.log("Data rozpocz\u0119cia: ".concat(new Date(startDate).toLocaleString()));
+  console.log("Data zako\u0144czenia: ".concat(new Date(endDate).toLocaleString()));
+  var BMI = Math.round(weight / (height * height) * 100000) / 10;
+  var targBMI = Math.round(targWeight / (height * height) * 100000) / 10;
+  var minWeight = Math.round(0.00185 * Math.pow(height, 2));
+  var maxWeight = Math.round(0.0025 * Math.pow(height, 2));
+  var status = getBMIStatusAndColor(BMI).status;
+  var targStatus = getBMIStatusAndColor(targBMI).status;
+  var BMR;
+
+  if (gender === "male") {
+    BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age + 5);
+  } else {
+    BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age - 161);
+  }
+
+  var CPM = Math.floor(BMR * getPAL(activity));
+  var diffWeight;
+  var loseOnWeight;
+
+  if (weight === targWeight) {
+    diffWeight = 0;
+    loseOnWeight = true;
+  } else if (weight > targWeight) {
+    diffWeight = weight - targWeight;
+    console.log("Musisz zrzuci\u0107 ".concat(diffWeight, "kg"));
+    loseOnWeight = true;
+  } else {
+    diffWeight = targWeight - weight;
+    console.log("Musisz przyty\u0107 ".concat(diffWeight, "kg"));
+    loseOnWeight = false;
+  }
+
+  var numberOfMonths = Math.floor((endTime - startTime) / 2592000000);
+  var numberOfWeeks = Math.floor((endTime - startTime) / 604800000);
+  var numberOfDays = Math.floor((endTime - startTime) / 86400000);
+  var numberOfDiffWeightPerMonth;
+  var numberOfDiffWeightPerWeek;
+  var numberOfDiffWeightPerDay;
+
+  if (numberOfMonths === 0) {
+    numberOfDiffWeightPerMonth = 0;
+  } else numberOfDiffWeightPerMonth = Math.round(diffWeight / numberOfMonths * 100) / 100;
+
+  if (numberOfWeeks === 0) {
+    numberOfDiffWeightPerWeek = 0;
+  } else numberOfDiffWeightPerWeek = Math.round(diffWeight / numberOfWeeks * 100) / 100;
+
+  if (numberOfDays === 0) {
+    numberOfDiffWeightPerDay = 0;
+  } else numberOfDiffWeightPerDay = Math.round(diffWeight / numberOfDays * 100) / 100;
+
+  console.log("liczba zrzuconych kilogram\xF3w na miesi\u0105c: ".concat(numberOfDiffWeightPerMonth));
+  console.log("liczba zrzuconych kilogram\xF3w na tydzie\u0144: ".concat(numberOfDiffWeightPerWeek));
+  console.log("liczba zrzuconych kilogram\xF3w na dzie\u0144: ".concat(numberOfDiffWeightPerDay));
+  var MonthsDisplayNumber = Math.floor(numberOfDays / 30);
+  var WeeksDisplayNumber;
+
+  if (MonthsDisplayNumber === 0) {
+    WeeksDisplayNumber = Math.floor(numberOfDays / 7);
+  } else {
+    WeeksDisplayNumber = Math.floor(numberOfWeeks / (MonthsDisplayNumber * 4));
+
+    if (MonthsDisplayNumber === 1 && numberOfWeeks === 4) {
+      WeeksDisplayNumber = 0;
+    }
+  }
+
+  var DaysDisplayNumber = Math.floor(numberOfDays - MonthsDisplayNumber * 30 - WeeksDisplayNumber * 7);
+  console.log("liczba wy\u015Bwietlanych miesi\u0119cy: ".concat(MonthsDisplayNumber));
+  console.log("liczba wy\u015Bwietlanych tygodni: ".concat(WeeksDisplayNumber));
+  console.log("liczba wy\u015Bwietlanych dni: ".concat(DaysDisplayNumber));
+  console.log("liczba miesi\u0119cy: ".concat(numberOfMonths));
+  console.log("liczba tygodni: ".concat(numberOfWeeks));
+  console.log("liczba dni: ".concat(numberOfDays));
+  console.log("diffWight: ".concat(diffWeight));
+  var numberOfDiffCaloriesPerDay = Math.round(diffWeight * 7700 / (numberOfDays === 0 ? numberOfDays = 1 : numberOfDays));
+  console.log("Aby schudn\u0105\u0107/przyty\u0107 musisz codziennie przybiera\u0107/pali\u0107: ".concat(numberOfDiffCaloriesPerDay));
+  console.log("----------------------WYNIKI----------------------");
+  console.log("Aktualne BMI: ".concat(BMI));
+  console.log("Aktualny status: ".concat(status));
+  console.log("Twoja waga powinna wynosi\u0107 pomi\u0119dzy: ".concat(minWeight, " kg - ").concat(maxWeight, " kg"));
+  console.log("BMR: ".concat(BMR));
+  console.log("Twoja ilo\u015B\u0107 potrzebnych kalorii: ".concat(CPM, " kcal"));
+  console.log("Aktualna aktywno\u015B\u0107 fizyczna: ");
+  console.log("Wzkaz\xF3wka: ");
+  console.log("Waga docelowa: ".concat(targWeight));
+  console.log("Docelowe BMI: ".concat(targBMI));
+  console.log("Docelowe status: ".concat(targStatus));
+  (0, _showResults.showResults)();
+}
+},{"./showResults":"js/showResults.js"}],"js/validateForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.validateForm = validateForm;
+
+var _calculate = require("./calculate");
+
 var _getGender = require("./getGender");
 
-function showResults() {
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function validateForm() {
   var ageInputValue = document.querySelector("#ageValue");
   var weightInputValue = document.querySelector("#weightValue");
   var heightInputValue = document.querySelector("#heightValue");
   var selectListItem = document.querySelectorAll(".select__listItem");
-  var selectValue = document.querySelector(".select");
+  var selectValue = document.querySelector(".select__p");
   var targWeightInputValue = document.querySelector("#targWeightValue");
   var startDateInputValue = document.querySelector("#startDate");
   var endDateInputValue = document.querySelector("#endDate");
-  var age = Number(ageInputValue.value);
-  var weight = Number(weightInputValue.value);
-  var height = Number(heightInputValue.value);
-  var targWeight = Number(targWeightInputValue.value);
-  var startDate = startDateInputValue.value;
-  var endDate = endDateInputValue.value;
-  var activity;
+
+  var errorPInputs = _toConsumableArray(document.querySelectorAll(".fieldset__inputError"));
+
+  var activity = "";
+  var startDate = "";
+  var endDate = "";
   selectListItem.forEach(function (li) {
     if (li.textContent === selectValue.textContent) {
       activity = li.value;
     }
   });
-  console.log(age);
-  console.log(_getGender.gender);
-  console.log(weight);
-  console.log(height);
-  console.log(activity);
-  console.log(targWeight);
-  console.log(startDate);
-  console.log(endDate);
+  errorPInputs.forEach(function (p) {
+    p.classList.add("fieldset__inputError--hidden");
+  });
+  chechInputsDate();
+  /*
+  switch ("") {
+    case ageInputValue.value:
+      displayError(0);
+      return;
+    case gender:
+      displayError(1);
+      return;
+    case weightInputValue.value:
+      displayError(2);
+      return;
+    case activity:
+      displayError(3);
+      return;
+    case targWeightInputValue.value:
+      displayError(4);
+      return;
+    case startDateInputValue.value:
+      displayError(5);
+      return;
+    case startDate:
+      displayError(6);
+      return;
+    case endDateInputValue.value:
+      displayError(7);
+      return;
+    case endDate:
+      displayError(8);
+      return;
+  }
+  */
+
+  var age = Number(ageInputValue.value);
+  var weight = Number(weightInputValue.value);
+  var height = Number(heightInputValue.value);
+  var targWeight = Number(targWeightInputValue.value); // calculate(
+  //   age,
+  //   gender,
+  //   weight,
+  //   height,
+  //   activity,
+  //   targWeight,
+  //   startDate,
+  //   endDate
+  // );
+
+  (0, _calculate.calculate)(21, "male", 88, 181, 3, 75, new Date("2022-10-01").getTime(), new Date("2022-12-22").getTime());
+
+  function displayError(nr) {
+    errorPInputs[nr].classList.remove("fieldset__inputError--hidden");
+  }
+
+  function chechInputsDate() {
+    var date = new Date();
+    var day = date.getDate() < 10 ? "0" + date.getDate().toString() : date.getDate().toString();
+    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString();
+    var year = date.getFullYear().toString();
+    var nowUnixDate = new Date("".concat(year, "-").concat(month, "-").concat(day)).getTime();
+    var startUnixDate = new Date(startDateInputValue.value).getTime();
+    var endUnixDate = new Date(endDateInputValue.value).getTime();
+
+    if (startUnixDate >= nowUnixDate) {
+      startDate = startUnixDate;
+    }
+
+    if (endUnixDate >= nowUnixDate && endUnixDate >= startUnixDate) {
+      endDate = endUnixDate;
+    }
+  }
 }
-},{"./getGender":"js/getGender.js"}],"js/toolTip.js":[function(require,module,exports) {
+},{"./calculate":"js/calculate.js","./getGender":"js/getGender.js"}],"js/toolTip.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -304,7 +499,7 @@ var _getGender = require("./getGender");
 
 var _checkInputNumber = require("./checkInputNumber");
 
-var _showResults = require("./showResults");
+var _validateForm = require("./validateForm");
 
 var _toolTip = require("./toolTip");
 
@@ -318,7 +513,7 @@ var inputsNumber = document.querySelectorAll(".inputNumber");
 var inputRange = document.querySelector(".inputRange");
 var submitBtn = document.querySelector(".calculator__submitBtn");
 var hintIcon = document.querySelectorAll(".hintIcon");
-submitBtn.addEventListener("click", _showResults.showResults); // change radio input color and check radio value
+submitBtn.addEventListener("click", _validateForm.validateForm); // change radio input color and check radio value
 
 radioBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
@@ -394,7 +589,7 @@ inputDate.forEach(function (input) {
     input.classList.add("inputDate--focus");
   });
 });
-},{"./changeTheme":"js/changeTheme.js","./showList":"js/showList.js","./getGender":"js/getGender.js","./checkInputNumber":"js/checkInputNumber.js","./showResults":"js/showResults.js","./toolTip":"js/toolTip.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./changeTheme":"js/changeTheme.js","./showList":"js/showList.js","./getGender":"js/getGender.js","./checkInputNumber":"js/checkInputNumber.js","./validateForm":"js/validateForm.js","./toolTip":"js/toolTip.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -422,7 +617,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53947" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61876" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

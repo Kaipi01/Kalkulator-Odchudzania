@@ -484,7 +484,7 @@ body.dark .select__p--active {
   opacity: 0.2;
   transition: all 0.3s ease-in-out;
 }
-.graphic__el:hover {
+.graphic__el:hover, .graphic__el:focus {
   opacity: 1;
 }
 .graphic__el--active {
