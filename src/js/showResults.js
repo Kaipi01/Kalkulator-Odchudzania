@@ -1,3 +1,5 @@
+// import fs from "fs";
+
 export function showResults(
   age,
   gender,
@@ -37,8 +39,12 @@ export function showResults(
     ".graphic__container:last-child graphic__des"
   );
 
-  personImg.src = "./img/male/Nadwaga.svg";
-  personTargImg.src = `./img/${gender}/${targStatus}.svg`;
+  // const buffer = fs.readFileSync(__dirname + "/img/male/Nadwaga.svg");
+
+  // personImg.src = nadwaga;
+  personTargImg.src = "./img/male/Prawidłowa masa ciała.svg";
+  personImg.alt = "test";
+  personTargImg.alt = `test`;
 
   console.log(personImg);
   console.log(personTargImg);
