@@ -1,4 +1,20 @@
-// import fs from "fs";
+import maleNadwaga from "../img/male/Nadwaga.svg";
+import maleNiedowaga from "../img/male/Niedowaga.svg";
+import maleOtyłośćIstopnia from "../img/male/Otyłość I stopnia.svg";
+import maleOtyłośćIIstopnia from "../img/male/Otyłość II stopnia.svg";
+import maleOtyłośćIIIstopnia from "../img/male/Otyłość III stopnia.svg";
+import malePrawidłowaMasaCiała from "../img/male/Prawidłowa masa ciała.svg";
+import maleWychudzenie from "../img/male/Wychudzenie.svg";
+import maleWygłodzenie from "../img/male/Wygłodzenie.svg";
+
+import femaleNadwaga from "../img/female/Nadwaga.svg";
+import femaleNiedowaga from "../img/female/Niedowaga.svg";
+import femaleOtyłośćIstopnia from "../img/female/Otyłość I stopnia.svg";
+import femaleOtyłośćIIstopnia from "../img/female/Otyłość II stopnia.svg";
+import femaleOtyłośćIIIstopnia from "../img/female/Otyłość III stopnia.svg";
+import femalePrawidłowaMasaCiała from "../img/female/Prawidłowa masa ciała.svg";
+import femaleWychudzenie from "../img/female/Wychudzenie.svg";
+import femaleWygłodzenie from "../img/female/Wygłodzenie.svg";
 
 export function showResults(
   age,
@@ -25,29 +41,55 @@ export function showResults(
   diffWeightMonth,
   diffWeightWeek,
   diffWeightDay,
-  activityTarg
+  targActivity
 ) {
   const results = document.querySelector(".results");
   const resultsBtn = document.querySelector(".results__btn");
   const personImg = document.querySelector(".personInfo__imgAct");
   const personTargImg = document.querySelector(".personInfo__imgTarg");
-  const actStatus = document.querySelector(".personInfo__actStatus");
+  const genderDisplay = gender === "male" ? "Mężczyzna" : "Kobieta";
+  const personInfoBMIP = document.querySelectorAll(
+    ".personInfo__bmiInfo > .personInfo__p--bold"
+  );
+  const personInfoBMITargP = document.querySelectorAll(
+    ".personInfo__bmiTargInfo > .personInfo__p--bold"
+  );
+
   const graphicDes1 = document.querySelectorAll(
-    ".graphic__container:first-child graphic__des"
+    ".results__graphic1 .graphic__des"
   );
   const graphicDes2 = document.querySelectorAll(
-    ".graphic__container:last-child graphic__des"
+    ".results__graphic2 .graphic__des"
   );
 
-  // const buffer = fs.readFileSync(__dirname + "/img/male/Nadwaga.svg");
+  console.log(personInfoBMIP);
 
-  // personImg.src = nadwaga;
-  personTargImg.src = "./img/male/Prawidłowa masa ciała.svg";
-  personImg.alt = "test";
-  personTargImg.alt = `test`;
+  personInfoBMITargP.forEach((p) => (p.style.color = targStatusColor));
+  personInfoBMIP.forEach((p) => (p.style.color = statusColor));
 
-  console.log(personImg);
-  console.log(personTargImg);
+  graphicDes1.forEach((des) => {
+    if (des.textContent === status) {
+      des.parentElement.classList.add("graphic__el--active");
+    }
+  });
+  graphicDes2.forEach((des) => {
+    if (des.textContent === targStatus) {
+      des.parentElement.classList.add("graphic__el--active");
+    }
+  });
+
+  personImg.src = getImage(gender, status);
+  personTargImg.src = getImage(gender, targStatus);
+  personImg.alt = `
+    Kolorowa sylwetka ${genderDisplay
+      .replace("a", "y")
+      .toLowerCase()} zaklasyfikowywana jako: ${status}
+  `;
+  personTargImg.alt = `
+    Kolorowa sylwetka ${genderDisplay
+      .replace("a", "y")
+      .toLowerCase()} zaklasyfikowywana jako: ${targStatus}
+  `;
 
   resultsBtn.addEventListener("click", () => {
     const main = document.querySelector(`.calculator`);
@@ -57,85 +99,97 @@ export function showResults(
     });
   });
 
-  actStatus.textContent = status;
-
-  document.querySelector(".personInfo__gender").textContent =
-    gender === "male" ? "Mężczyzna" : "Kobieta";
-  document.querySelector(".personInfo__age").textContent = age;
-  document.querySelector(".personInfo__height").textContent = height;
-  document.querySelector(".personInfo__weight").textContent = weight;
-  document.querySelector(".personInfo__bmi").textContent = BMI;
-  document.querySelector(".personInfo__weightRange").textContent = weightRange;
-  document.querySelector(".results__bmr").textContent = BMR;
-  document.querySelector(".results__cpm").textContent = CPM;
-  document.querySelector(".results__activity").textContent = activity;
-  document.querySelector(".results__hint").textContent = hint;
-  document.querySelector(".personInfo__targWeight").textContent = targWeight;
-  document.querySelector(".personInfo__targBmi").textContent = targBMI;
-  document.querySelector(".personInfo__targStatus").textContent = targStatus;
-  document.querySelector(".results__months").textContent = months;
-  document.querySelector(".results__weeks").textContent = weeks;
-  document.querySelector(".results__days").textContent = days;
-  document.querySelector(".results__diffCalories").textContent = diffCalories;
-  document.querySelector(".results__diffWeight").textContent = diffWeight;
-  document.querySelector(".results__weightMonth").textContent = diffWeightMonth;
-  document.querySelector(".results__weightWeek").textContent = diffWeightWeek;
-  document.querySelector(".results__weightDay").textContent = diffWeightDay;
-  document.querySelector(".results__targActivity").textContent = activityTarg;
+  setComponentInfo("personInfo", "status", status);
+  setComponentInfo("personInfo", "age", `${age} lat`);
+  setComponentInfo("personInfo", "gender", genderDisplay);
+  setComponentInfo("personInfo", "height", `${height} cm`);
+  setComponentInfo("personInfo", "weight", `${weight} kg`);
+  setComponentInfo("personInfo", "BMI", BMI);
+  setComponentInfo("personInfo", "weightRange", weightRange);
+  setComponentInfo("personInfo", "targWeight", `${targWeight} kg`);
+  setComponentInfo("personInfo", "targBMI", targBMI);
+  setComponentInfo("personInfo", "targStatus", targStatus);
+  setComponentInfo("results", "BMR", BMR);
+  setComponentInfo("results", "CPM", CPM);
+  setComponentInfo("results", "activity", activity);
+  setComponentInfo("results", "hint", hint);
+  setComponentInfo("results", "months", `miesiące: ${months}`);
+  setComponentInfo("results", "weeks", `tygodnie: ${weeks}`);
+  setComponentInfo("results", "days", `dni: ${days}`);
+  setComponentInfo("results", "diffCalories", diffCalories);
+  setComponentInfo("results", "diffWeight", diffWeight);
+  setComponentInfo("results", "diffWeightMonth", `${diffWeightMonth} kg`);
+  setComponentInfo("results", "diffWeightWeek", `${diffWeightWeek} kg`);
+  setComponentInfo("results", "diffWeightDay", `${diffWeightDay} kg`);
+  setComponentInfo("results", "targActivity", targActivity);
 
   results.classList.remove("results--hidden");
+
+  function setComponentInfo(component, info, infoValue) {
+    document.querySelector(`.${component}__${info}`).textContent = infoValue;
+  }
+
+  function getImage(gender, status) {
+    let src;
+
+    switch (gender) {
+      case "male":
+        switch (status) {
+          case "Nadwaga":
+            src = maleNadwaga;
+            break;
+          case "Niedowaga":
+            src = maleNiedowaga;
+            break;
+          case "Otyłość I stopnia":
+            src = maleOtyłośćIstopnia;
+            break;
+          case "Otyłość II stopnia":
+            src = maleOtyłośćIIstopnia;
+            break;
+          case "Otyłość III stopnia":
+            src = maleOtyłośćIIIstopnia;
+            break;
+          case "Prawidłowa masa ciała":
+            src = malePrawidłowaMasaCiała;
+            break;
+          case "Wychudzenie":
+            src = maleWychudzenie;
+            break;
+          case "Wygłodzenie":
+            src = maleWygłodzenie;
+            break;
+        }
+        break;
+      case "female":
+        switch (status) {
+          case "Nadwaga":
+            src = femaleNadwaga;
+            break;
+          case "Niedowaga":
+            src = femaleNiedowaga;
+            break;
+          case "Otyłość I stopnia":
+            src = femaleOtyłośćIstopnia;
+            break;
+          case "Otyłość II stopnia":
+            src = femaleOtyłośćIIstopnia;
+            break;
+          case "Otyłość III stopnia":
+            src = femaleOtyłośćIIIstopnia;
+            break;
+          case "Prawidłowa masa ciała":
+            src = femalePrawidłowaMasaCiała;
+            break;
+          case "Wychudzenie":
+            src = femaleWychudzenie;
+            break;
+          case "Wygłodzenie":
+            src = femaleWygłodzenie;
+            break;
+        }
+        break;
+    }
+    return src;
+  }
 }
-
-/*
-const results = document.querySelector(".results");
-const resultsBtn = document.querySelector(".results__btn");
-const personImg = document.querySelector(".personInfo__imgAct");
-const personTargImg = document.querySelector(".personInfo__imgTarg");
-const personGender = document.querySelector(".personInfo__gender");
-const personAge = document.querySelector(".personInfo__age");
-const personHeight = document.querySelector(".personInfo__height");
-const personWeight = document.querySelector(".personInfo__weight");
-const personBMI = document.querySelector(".personInfo__bmi");
-const personStatus = document.querySelector(".personInfo__status");
-const personWeightRange = document.querySelector(".personInfo__weightRange");
-const resultsBMR = document.querySelector(".results__bmr");
-const resultsCPM = document.querySelector(".results__cpm");
-const resultsActivity = document.querySelector(".results__activity");
-const resultsHint = document.querySelector(".results__hint");
-const personTargWeight = document.querySelector(".personInfo__targWeight");
-const personTargBMI = document.querySelector(".personInfo__targBmi");
-const personTargStatus = document.querySelector(".personInfo__targStatus");
-const resultsMonths = document.querySelector(".results__months");
-const resultsWeeks = document.querySelector(".results__weeks");
-const resultsDays = document.querySelector(".results__days");
-const resultsDiffCalories = document.querySelector(".results__diffCalories");
-const resultsDiffWeight = document.querySelector(".results__diffWeight");
-const resultsWeightMonth = document.querySelector(".results__weightMonth");
-const resultsWeightWeek = document.querySelector(".results__weightWeek");
-const resultsWeightDay = document.querySelector(".results__weightDay");
-const resultsTargActivity = document.querySelector(".results__targActivity");
-const graphicDes1 = document.querySelectorAll(
-  ".graphic__container:first-child graphic__des"
-);
-const graphicDes2 = document.querySelectorAll(
-  ".graphic__container:last-child graphic__des"
-);
-
-personImg.src = "./img/male/Nadwaga.svg";
-personTargImg.src = `./img/${gender}/${targStatus}.svg`;
-
-personGender.textContent = gender === "male" ? "Mężczyzna" : "Kobieta";
-personAge.textContent = age;
-personHeight.textContent = height;
-personWeight.textContent = weight;
-personBMI.textContent = BMI;
-personStatus.textContent = status;
-personWeightRange.textContent = weightRange;
-resultsBMR.textContent = BMR;
-resultsCPM.textContent = CPM;
-resultsActivity.textContent = activity;
-resultsHint.textContent = hint;
-personTargWeight.textContent = targWeight;
-personTargBMI.textContent = targBMI;
-personTargStatus.textContent = targStatus;
-*/
