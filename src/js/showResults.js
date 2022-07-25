@@ -6,7 +6,6 @@ import maleOtyłośćIIIstopnia from "../img/male/Otyłość III stopnia.svg";
 import malePrawidłowaMasaCiała from "../img/male/Prawidłowa masa ciała.svg";
 import maleWychudzenie from "../img/male/Wychudzenie.svg";
 import maleWygłodzenie from "../img/male/Wygłodzenie.svg";
-
 import femaleNadwaga from "../img/female/Nadwaga.svg";
 import femaleNiedowaga from "../img/female/Niedowaga.svg";
 import femaleOtyłośćIstopnia from "../img/female/Otyłość I stopnia.svg";
@@ -33,13 +32,9 @@ export function showResults(
   targBMI,
   targStatus,
   targStatusColor,
-  months,
-  weeks,
   days,
   diffCalories,
   diffWeight,
-  diffWeightMonth,
-  diffWeightWeek,
   diffWeightDay,
   targActivity
 ) {
@@ -62,21 +57,11 @@ export function showResults(
     ".results__graphic2 .graphic__des"
   );
 
-  console.log(personInfoBMIP);
-
   personInfoBMITargP.forEach((p) => (p.style.color = targStatusColor));
   personInfoBMIP.forEach((p) => (p.style.color = statusColor));
 
-  graphicDes1.forEach((des) => {
-    if (des.textContent === status) {
-      des.parentElement.classList.add("graphic__el--active");
-    }
-  });
-  graphicDes2.forEach((des) => {
-    if (des.textContent === targStatus) {
-      des.parentElement.classList.add("graphic__el--active");
-    }
-  });
+  showOrClearGraphic("clear");
+  showOrClearGraphic("show");
 
   personImg.src = getImage(gender, status);
   personTargImg.src = getImage(gender, targStatus);
@@ -113,20 +98,35 @@ export function showResults(
   setComponentInfo("results", "CPM", CPM);
   setComponentInfo("results", "activity", activity);
   setComponentInfo("results", "hint", hint);
-  setComponentInfo("results", "months", `miesiące: ${months}`);
-  setComponentInfo("results", "weeks", `tygodnie: ${weeks}`);
-  setComponentInfo("results", "days", `dni: ${days}`);
+  setComponentInfo("results", "days", `ilość dni: ${days}`);
   setComponentInfo("results", "diffCalories", diffCalories);
   setComponentInfo("results", "diffWeight", diffWeight);
-  setComponentInfo("results", "diffWeightMonth", `${diffWeightMonth} kg`);
-  setComponentInfo("results", "diffWeightWeek", `${diffWeightWeek} kg`);
-  setComponentInfo("results", "diffWeightDay", `${diffWeightDay} kg`);
+  setComponentInfo("results", "diffWeightDay", `dzień: ${diffWeightDay} kg`);
   setComponentInfo("results", "targActivity", targActivity);
 
   results.classList.remove("results--hidden");
 
   function setComponentInfo(component, info, infoValue) {
-    document.querySelector(`.${component}__${info}`).textContent = infoValue;
+    const selector = document.querySelector(`.${component}__${info}`);
+    selector.textContent = infoValue;
+  }
+
+  function showOrClearGraphic(command) {
+    if (command === "clear") {
+      const allGraphicEl = document.querySelectorAll(".graphic__el");
+      allGraphicEl.forEach((el) => el.classList.remove("graphic__el--active"));
+    } else {
+      graphicDes1.forEach((des) => {
+        if (des.textContent === status) {
+          des.parentElement.classList.add("graphic__el--active");
+        }
+      });
+      graphicDes2.forEach((des) => {
+        if (des.textContent === targStatus) {
+          des.parentElement.classList.add("graphic__el--active");
+        }
+      });
+    }
   }
 
   function getImage(gender, status) {
