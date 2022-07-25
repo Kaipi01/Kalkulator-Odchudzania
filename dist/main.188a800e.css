@@ -468,7 +468,7 @@ body.dark .select__p--active {
   font-size: 13px;
 }
 .graphic__el {
-  margin: 5px 0;
+  margin: 7px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -478,6 +478,7 @@ body.dark .select__p--active {
   padding-left: 10px;
   height: 80px;
   font-weight: bold;
+  transform: scale(1.175);
   color: #000000;
   -webkit-clip-path: polygon(85% 0, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
   clip-path: polygon(85% 0, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
@@ -489,7 +490,6 @@ body.dark .select__p--active {
 }
 .graphic__el--active {
   opacity: 1;
-  transform: scale(1.175);
 }
 .graphic__el--1 {
   background: #00ffd9;
@@ -559,6 +559,10 @@ body.dark .select__p--active {
 .personInfo__p--bold {
   font-weight: bold;
   color: rgb(0, 142, 17);
+}
+
+.personInfo__statusInfo > .personInfo__p--bold {
+  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px 0px 0 #000, 0px 1px 0 #000, -1px 0px 0 #000, 0px -1px 0 #000;
 }
 
 body.dark .personInfo__p--bold {

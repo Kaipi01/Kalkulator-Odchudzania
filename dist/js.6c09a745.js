@@ -223,6 +223,38 @@ function checkInputNumber(e) {
     } else if (e.target.value > 999) e.target.value = 999;
   }
 }
+},{}],"../src/img/male/Nadwaga.svg":[function(require,module,exports) {
+module.exports = "/Nadwaga.38b1dcf9.svg";
+},{}],"../src/img/male/Niedowaga.svg":[function(require,module,exports) {
+module.exports = "/Niedowaga.a9e600a1.svg";
+},{}],"../src/img/male/Otyłość I stopnia.svg":[function(require,module,exports) {
+module.exports = "/Otyłość I stopnia.ad67dc9c.svg";
+},{}],"../src/img/male/Otyłość II stopnia.svg":[function(require,module,exports) {
+module.exports = "/Otyłość II stopnia.93c2b605.svg";
+},{}],"../src/img/male/Otyłość III stopnia.svg":[function(require,module,exports) {
+module.exports = "/Otyłość III stopnia.845f771e.svg";
+},{}],"../src/img/male/Prawidłowa masa ciała.svg":[function(require,module,exports) {
+module.exports = "/Prawidłowa masa ciała.b8d5bae8.svg";
+},{}],"../src/img/male/Wychudzenie.svg":[function(require,module,exports) {
+module.exports = "/Wychudzenie.eb3ca563.svg";
+},{}],"../src/img/male/Wygłodzenie.svg":[function(require,module,exports) {
+module.exports = "/Wygłodzenie.bb66a17d.svg";
+},{}],"../src/img/female/Nadwaga.svg":[function(require,module,exports) {
+module.exports = "/Nadwaga.5bfa0684.svg";
+},{}],"../src/img/female/Niedowaga.svg":[function(require,module,exports) {
+module.exports = "/Niedowaga.93f42777.svg";
+},{}],"../src/img/female/Otyłość I stopnia.svg":[function(require,module,exports) {
+module.exports = "/Otyłość I stopnia.022e3ae6.svg";
+},{}],"../src/img/female/Otyłość II stopnia.svg":[function(require,module,exports) {
+module.exports = "/Otyłość II stopnia.3fa8ebf2.svg";
+},{}],"../src/img/female/Otyłość III stopnia.svg":[function(require,module,exports) {
+module.exports = "/Otyłość III stopnia.a5958484.svg";
+},{}],"../src/img/female/Prawidłowa masa ciała.svg":[function(require,module,exports) {
+module.exports = "/Prawidłowa masa ciała.859f8ceb.svg";
+},{}],"../src/img/female/Wychudzenie.svg":[function(require,module,exports) {
+module.exports = "/Wychudzenie.8aecb56a.svg";
+},{}],"../src/img/female/Wygłodzenie.svg":[function(require,module,exports) {
+module.exports = "/Wygłodzenie.d21af4d8.svg";
 },{}],"../src/js/showResults.js":[function(require,module,exports) {
 "use strict";
 
@@ -231,22 +263,71 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.showResults = showResults;
 
-// import fs from "fs";
-function showResults(age, gender, weight, height, BMI, status, statusColor, CPM, weightRange, BMR, activity, hint, targWeight, targBMI, targStatus, targStatusColor, months, weeks, days, diffCalories, diffWeight, diffWeightMonth, diffWeightWeek, diffWeightDay, activityTarg) {
+var _Nadwaga = _interopRequireDefault(require("../img/male/Nadwaga.svg"));
+
+var _Niedowaga = _interopRequireDefault(require("../img/male/Niedowaga.svg"));
+
+var _OtyłośćIStopnia = _interopRequireDefault(require("../img/male/Oty\u0142o\u015B\u0107 I stopnia.svg"));
+
+var _OtyłośćIIStopnia = _interopRequireDefault(require("../img/male/Oty\u0142o\u015B\u0107 II stopnia.svg"));
+
+var _OtyłośćIIIStopnia = _interopRequireDefault(require("../img/male/Oty\u0142o\u015B\u0107 III stopnia.svg"));
+
+var _PrawidłowaMasaCiała = _interopRequireDefault(require("../img/male/Prawid\u0142owa masa cia\u0142a.svg"));
+
+var _Wychudzenie = _interopRequireDefault(require("../img/male/Wychudzenie.svg"));
+
+var _Wygłodzenie = _interopRequireDefault(require("../img/male/Wyg\u0142odzenie.svg"));
+
+var _Nadwaga2 = _interopRequireDefault(require("../img/female/Nadwaga.svg"));
+
+var _Niedowaga2 = _interopRequireDefault(require("../img/female/Niedowaga.svg"));
+
+var _OtyłośćIStopnia2 = _interopRequireDefault(require("../img/female/Oty\u0142o\u015B\u0107 I stopnia.svg"));
+
+var _OtyłośćIIStopnia2 = _interopRequireDefault(require("../img/female/Oty\u0142o\u015B\u0107 II stopnia.svg"));
+
+var _OtyłośćIIIStopnia2 = _interopRequireDefault(require("../img/female/Oty\u0142o\u015B\u0107 III stopnia.svg"));
+
+var _PrawidłowaMasaCiała2 = _interopRequireDefault(require("../img/female/Prawid\u0142owa masa cia\u0142a.svg"));
+
+var _Wychudzenie2 = _interopRequireDefault(require("../img/female/Wychudzenie.svg"));
+
+var _Wygłodzenie2 = _interopRequireDefault(require("../img/female/Wyg\u0142odzenie.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function showResults(age, gender, weight, height, BMI, status, statusColor, CPM, weightRange, BMR, activity, hint, targWeight, targBMI, targStatus, targStatusColor, months, weeks, days, diffCalories, diffWeight, diffWeightMonth, diffWeightWeek, diffWeightDay, targActivity) {
   var results = document.querySelector(".results");
   var resultsBtn = document.querySelector(".results__btn");
   var personImg = document.querySelector(".personInfo__imgAct");
   var personTargImg = document.querySelector(".personInfo__imgTarg");
-  var actStatus = document.querySelector(".personInfo__actStatus");
-  var graphicDes1 = document.querySelectorAll(".graphic__container:first-child graphic__des");
-  var graphicDes2 = document.querySelectorAll(".graphic__container:last-child graphic__des"); // const buffer = fs.readFileSync(__dirname + "/img/male/Nadwaga.svg");
-  // personImg.src = nadwaga;
-
-  personTargImg.src = "./img/male/Prawidłowa masa ciała.svg";
-  personImg.alt = "test";
-  personTargImg.alt = "test";
-  console.log(personImg);
-  console.log(personTargImg);
+  var genderDisplay = gender === "male" ? "Mężczyzna" : "Kobieta";
+  var personInfoBMIP = document.querySelectorAll(".personInfo__bmiInfo > .personInfo__p--bold");
+  var personInfoBMITargP = document.querySelectorAll(".personInfo__bmiTargInfo > .personInfo__p--bold");
+  var graphicDes1 = document.querySelectorAll(".results__graphic1 .graphic__des");
+  var graphicDes2 = document.querySelectorAll(".results__graphic2 .graphic__des");
+  console.log(personInfoBMIP);
+  personInfoBMITargP.forEach(function (p) {
+    return p.style.color = targStatusColor;
+  });
+  personInfoBMIP.forEach(function (p) {
+    return p.style.color = statusColor;
+  });
+  graphicDes1.forEach(function (des) {
+    if (des.textContent === status) {
+      des.parentElement.classList.add("graphic__el--active");
+    }
+  });
+  graphicDes2.forEach(function (des) {
+    if (des.textContent === targStatus) {
+      des.parentElement.classList.add("graphic__el--active");
+    }
+  });
+  personImg.src = getImage(gender, status);
+  personTargImg.src = getImage(gender, targStatus);
+  personImg.alt = "\n    Kolorowa sylwetka ".concat(genderDisplay.replace("a", "y").toLowerCase(), " zaklasyfikowywana jako: ").concat(status, "\n  ");
+  personTargImg.alt = "\n    Kolorowa sylwetka ".concat(genderDisplay.replace("a", "y").toLowerCase(), " zaklasyfikowywana jako: ").concat(targStatus, "\n  ");
   resultsBtn.addEventListener("click", function () {
     var main = document.querySelector(".calculator");
     window.scrollTo({
@@ -254,85 +335,118 @@ function showResults(age, gender, weight, height, BMI, status, statusColor, CPM,
       behavior: "smooth"
     });
   });
-  actStatus.textContent = status;
-  document.querySelector(".personInfo__gender").textContent = gender === "male" ? "Mężczyzna" : "Kobieta";
-  document.querySelector(".personInfo__age").textContent = age;
-  document.querySelector(".personInfo__height").textContent = height;
-  document.querySelector(".personInfo__weight").textContent = weight;
-  document.querySelector(".personInfo__bmi").textContent = BMI;
-  document.querySelector(".personInfo__weightRange").textContent = weightRange;
-  document.querySelector(".results__bmr").textContent = BMR;
-  document.querySelector(".results__cpm").textContent = CPM;
-  document.querySelector(".results__activity").textContent = activity;
-  document.querySelector(".results__hint").textContent = hint;
-  document.querySelector(".personInfo__targWeight").textContent = targWeight;
-  document.querySelector(".personInfo__targBmi").textContent = targBMI;
-  document.querySelector(".personInfo__targStatus").textContent = targStatus;
-  document.querySelector(".results__months").textContent = months;
-  document.querySelector(".results__weeks").textContent = weeks;
-  document.querySelector(".results__days").textContent = days;
-  document.querySelector(".results__diffCalories").textContent = diffCalories;
-  document.querySelector(".results__diffWeight").textContent = diffWeight;
-  document.querySelector(".results__weightMonth").textContent = diffWeightMonth;
-  document.querySelector(".results__weightWeek").textContent = diffWeightWeek;
-  document.querySelector(".results__weightDay").textContent = diffWeightDay;
-  document.querySelector(".results__targActivity").textContent = activityTarg;
+  setComponentInfo("personInfo", "status", status);
+  setComponentInfo("personInfo", "age", "".concat(age, " lat"));
+  setComponentInfo("personInfo", "gender", genderDisplay);
+  setComponentInfo("personInfo", "height", "".concat(height, " cm"));
+  setComponentInfo("personInfo", "weight", "".concat(weight, " kg"));
+  setComponentInfo("personInfo", "BMI", BMI);
+  setComponentInfo("personInfo", "weightRange", weightRange);
+  setComponentInfo("personInfo", "targWeight", "".concat(targWeight, " kg"));
+  setComponentInfo("personInfo", "targBMI", targBMI);
+  setComponentInfo("personInfo", "targStatus", targStatus);
+  setComponentInfo("results", "BMR", BMR);
+  setComponentInfo("results", "CPM", CPM);
+  setComponentInfo("results", "activity", activity);
+  setComponentInfo("results", "hint", hint);
+  setComponentInfo("results", "months", "miesi\u0105ce: ".concat(months));
+  setComponentInfo("results", "weeks", "tygodnie: ".concat(weeks));
+  setComponentInfo("results", "days", "dni: ".concat(days));
+  setComponentInfo("results", "diffCalories", diffCalories);
+  setComponentInfo("results", "diffWeight", diffWeight);
+  setComponentInfo("results", "diffWeightMonth", "".concat(diffWeightMonth, " kg"));
+  setComponentInfo("results", "diffWeightWeek", "".concat(diffWeightWeek, " kg"));
+  setComponentInfo("results", "diffWeightDay", "".concat(diffWeightDay, " kg"));
+  setComponentInfo("results", "targActivity", targActivity);
   results.classList.remove("results--hidden");
+
+  function setComponentInfo(component, info, infoValue) {
+    document.querySelector(".".concat(component, "__").concat(info)).textContent = infoValue;
+  }
+
+  function getImage(gender, status) {
+    var src;
+
+    switch (gender) {
+      case "male":
+        switch (status) {
+          case "Nadwaga":
+            src = _Nadwaga.default;
+            break;
+
+          case "Niedowaga":
+            src = _Niedowaga.default;
+            break;
+
+          case "Otyłość I stopnia":
+            src = _OtyłośćIStopnia.default;
+            break;
+
+          case "Otyłość II stopnia":
+            src = _OtyłośćIIStopnia.default;
+            break;
+
+          case "Otyłość III stopnia":
+            src = _OtyłośćIIIStopnia.default;
+            break;
+
+          case "Prawidłowa masa ciała":
+            src = _PrawidłowaMasaCiała.default;
+            break;
+
+          case "Wychudzenie":
+            src = _Wychudzenie.default;
+            break;
+
+          case "Wygłodzenie":
+            src = _Wygłodzenie.default;
+            break;
+        }
+
+        break;
+
+      case "female":
+        switch (status) {
+          case "Nadwaga":
+            src = _Nadwaga2.default;
+            break;
+
+          case "Niedowaga":
+            src = _Niedowaga2.default;
+            break;
+
+          case "Otyłość I stopnia":
+            src = _OtyłośćIStopnia2.default;
+            break;
+
+          case "Otyłość II stopnia":
+            src = _OtyłośćIIStopnia2.default;
+            break;
+
+          case "Otyłość III stopnia":
+            src = _OtyłośćIIIStopnia2.default;
+            break;
+
+          case "Prawidłowa masa ciała":
+            src = _PrawidłowaMasaCiała2.default;
+            break;
+
+          case "Wychudzenie":
+            src = _Wychudzenie2.default;
+            break;
+
+          case "Wygłodzenie":
+            src = _Wygłodzenie2.default;
+            break;
+        }
+
+        break;
+    }
+
+    return src;
+  }
 }
-/*
-const results = document.querySelector(".results");
-const resultsBtn = document.querySelector(".results__btn");
-const personImg = document.querySelector(".personInfo__imgAct");
-const personTargImg = document.querySelector(".personInfo__imgTarg");
-const personGender = document.querySelector(".personInfo__gender");
-const personAge = document.querySelector(".personInfo__age");
-const personHeight = document.querySelector(".personInfo__height");
-const personWeight = document.querySelector(".personInfo__weight");
-const personBMI = document.querySelector(".personInfo__bmi");
-const personStatus = document.querySelector(".personInfo__status");
-const personWeightRange = document.querySelector(".personInfo__weightRange");
-const resultsBMR = document.querySelector(".results__bmr");
-const resultsCPM = document.querySelector(".results__cpm");
-const resultsActivity = document.querySelector(".results__activity");
-const resultsHint = document.querySelector(".results__hint");
-const personTargWeight = document.querySelector(".personInfo__targWeight");
-const personTargBMI = document.querySelector(".personInfo__targBmi");
-const personTargStatus = document.querySelector(".personInfo__targStatus");
-const resultsMonths = document.querySelector(".results__months");
-const resultsWeeks = document.querySelector(".results__weeks");
-const resultsDays = document.querySelector(".results__days");
-const resultsDiffCalories = document.querySelector(".results__diffCalories");
-const resultsDiffWeight = document.querySelector(".results__diffWeight");
-const resultsWeightMonth = document.querySelector(".results__weightMonth");
-const resultsWeightWeek = document.querySelector(".results__weightWeek");
-const resultsWeightDay = document.querySelector(".results__weightDay");
-const resultsTargActivity = document.querySelector(".results__targActivity");
-const graphicDes1 = document.querySelectorAll(
-  ".graphic__container:first-child graphic__des"
-);
-const graphicDes2 = document.querySelectorAll(
-  ".graphic__container:last-child graphic__des"
-);
-
-personImg.src = "./img/male/Nadwaga.svg";
-personTargImg.src = `./img/${gender}/${targStatus}.svg`;
-
-personGender.textContent = gender === "male" ? "Mężczyzna" : "Kobieta";
-personAge.textContent = age;
-personHeight.textContent = height;
-personWeight.textContent = weight;
-personBMI.textContent = BMI;
-personStatus.textContent = status;
-personWeightRange.textContent = weightRange;
-resultsBMR.textContent = BMR;
-resultsCPM.textContent = CPM;
-resultsActivity.textContent = activity;
-resultsHint.textContent = hint;
-personTargWeight.textContent = targWeight;
-personTargBMI.textContent = targBMI;
-personTargStatus.textContent = targStatus;
-*/
-},{}],"../src/js/calculate.js":[function(require,module,exports) {
+},{"../img/male/Nadwaga.svg":"../src/img/male/Nadwaga.svg","../img/male/Niedowaga.svg":"../src/img/male/Niedowaga.svg","../img/male/Otyłość I stopnia.svg":"../src/img/male/Otyłość I stopnia.svg","../img/male/Otyłość II stopnia.svg":"../src/img/male/Otyłość II stopnia.svg","../img/male/Otyłość III stopnia.svg":"../src/img/male/Otyłość III stopnia.svg","../img/male/Prawidłowa masa ciała.svg":"../src/img/male/Prawidłowa masa ciała.svg","../img/male/Wychudzenie.svg":"../src/img/male/Wychudzenie.svg","../img/male/Wygłodzenie.svg":"../src/img/male/Wygłodzenie.svg","../img/female/Nadwaga.svg":"../src/img/female/Nadwaga.svg","../img/female/Niedowaga.svg":"../src/img/female/Niedowaga.svg","../img/female/Otyłość I stopnia.svg":"../src/img/female/Otyłość I stopnia.svg","../img/female/Otyłość II stopnia.svg":"../src/img/female/Otyłość II stopnia.svg","../img/female/Otyłość III stopnia.svg":"../src/img/female/Otyłość III stopnia.svg","../img/female/Prawidłowa masa ciała.svg":"../src/img/female/Prawidłowa masa ciała.svg","../img/female/Wychudzenie.svg":"../src/img/female/Wychudzenie.svg","../img/female/Wygłodzenie.svg":"../src/img/female/Wygłodzenie.svg"}],"../src/js/calculate.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -613,7 +727,7 @@ function validateForm() {
   //   endDate
   // );
 
-  (0, _calculate.calculate)(24, "male", 88, 181, 3, 75, new Date("2022-10-01").getTime(), new Date("2022-12-22").getTime());
+  (0, _calculate.calculate)(24, "male", 138, 181, 3, 35, new Date("2022-10-01").getTime(), new Date("2022-12-22").getTime());
 
   function displayError(nr) {
     errorPInputs[nr].classList.remove("fieldset__inputError--hidden");
@@ -801,7 +915,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51960" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53071" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
