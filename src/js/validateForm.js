@@ -77,10 +77,10 @@ export function validateForm() {
   calculate(
     24,
     "male",
-    88,
+    138,
     181,
     3,
-    75,
+    35,
     new Date(`2022-10-01`).getTime(),
     new Date(`2022-12-22`).getTime()
   );
