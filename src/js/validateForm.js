@@ -27,7 +27,7 @@ export function validateForm() {
   });
 
   chechInputsDate();
-  /*
+
   switch ("") {
     case ageInputValue.value:
       displayError(0);
@@ -57,32 +57,21 @@ export function validateForm() {
       displayError(8);
       return;
   }
-  */
+
   const age = Number(ageInputValue.value);
   const weight = Number(weightInputValue.value);
   const height = Number(heightInputValue.value);
   const targWeight = Number(targWeightInputValue.value);
 
-  // calculate(
-  //   age,
-  //   gender,
-  //   weight,
-  //   height,
-  //   activity,
-  //   targWeight,
-  //   startDate,
-  //   endDate
-  // );
-
   calculate(
-    24,
-    "male",
-    138,
-    181,
-    3,
-    35,
-    new Date(`2022-10-01`).getTime(),
-    new Date(`2022-12-22`).getTime()
+    age,
+    gender,
+    weight,
+    height,
+    activity,
+    targWeight,
+    startDate,
+    endDate
   );
 
   function displayError(nr) {
