@@ -21,15 +21,14 @@ export function calculate(
   const targStatusColor = getBMIStatusAndColor(targBMI).color;
   const activityStatus = getActivityStatus(activity);
 
-  let diffWeight;
-  let diffWeightMonth, diffWeightWeek, diffWeightDay;
-  let numberOfMonths = Math.floor((endDate - startDate) / 2592000000);
-  let numberOfWeeks = Math.floor((endDate - startDate) / 604800000);
-  let numberOfDays = Math.floor((endDate - startDate) / 86400000);
-  let MonthsDisplayNumber = Math.floor(numberOfDays / 30);
-  let WeeksDisplayNumber;
-  let hint = "";
-  let activityTargStatus = "";
+  let days = Math.floor((endDate - startDate) / 86400000);
+  days === 0 ? (days = 1) : days;
+
+  const diffWeight = Math.abs(weight - targWeight);
+  const diffWeightDay = Math.round((diffWeight / days) * 100) / 100;
+  const hint = "";
+  const targActivity = "";
+
   let BMR;
 
   if (gender === "male")
@@ -37,34 +36,7 @@ export function calculate(
   else BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age - 161);
 
   const CPM = Math.floor(BMR * getPAL(activity));
-
-  if (weight === targWeight) diffWeight = 0;
-  else if (weight > targWeight) diffWeight = weight - targWeight;
-  else diffWeight = targWeight - weight;
-
-  if (numberOfMonths === 0) diffWeightMonth = 0;
-  else diffWeightMonth = Math.round((diffWeight / numberOfMonths) * 100) / 100;
-
-  if (numberOfWeeks === 0) diffWeightWeek = 0;
-  else diffWeightWeek = Math.round((diffWeight / numberOfWeeks) * 100) / 100;
-
-  if (numberOfDays === 0) diffWeightDay = 0;
-  else diffWeightDay = Math.round((diffWeight / numberOfDays) * 100) / 100;
-
-  if (MonthsDisplayNumber === 0)
-    WeeksDisplayNumber = Math.floor(numberOfDays / 7);
-  else {
-    WeeksDisplayNumber = Math.floor(numberOfWeeks / (MonthsDisplayNumber * 4));
-    if (MonthsDisplayNumber === 1 && numberOfWeeks === 4)
-      WeeksDisplayNumber = 0;
-  }
-  let DaysDisplayNumber = Math.floor(
-    numberOfDays - MonthsDisplayNumber * 30 - WeeksDisplayNumber * 7
-  );
-  const diffCalories = Math.round(
-    (diffWeight * 7700) /
-      (numberOfDays === 0 ? (numberOfDays = 1) : numberOfDays)
-  );
+  const diffCalories = Math.round((diffWeight * 7700) / days);
 
   showResults(
     age,
@@ -83,15 +55,11 @@ export function calculate(
     targBMI,
     targStatus,
     targStatusColor,
-    MonthsDisplayNumber,
-    WeeksDisplayNumber,
-    DaysDisplayNumber,
+    days,
     diffCalories,
     diffWeight,
-    diffWeightMonth,
-    diffWeightWeek,
     diffWeightDay,
-    activityTargStatus
+    targActivity
   );
 
   function getBMIStatusAndColor(BMI) {
@@ -187,42 +155,4 @@ export function calculate(
     }
     return PAL;
   }
-
-  console.log(`Wiek: ${age} lat`);
-  console.log(`Płeć: ${gender === "male" ? "Mężczyzna" : "Kobieta"}`);
-  console.log(`Waga: ${weight} kg`);
-  console.log(`Wzrost: ${height} cm`);
-  console.log(`Numer aktywności fizycznej z listy: ${activity}`);
-  console.log(`Waga docelowa: ${targWeight} kg`);
-  console.log(`Data rozpoczęcia: ${new Date(startDate).toLocaleString("pl")}`);
-  console.log(`Data zakończenia: ${new Date(endDate).toLocaleString("pl")}`);
-  console.log("----------------------WYNIKI----------------------");
-  console.log(`Aktualne BMI: ${BMI}`);
-  console.log(`Aktualny status: ${status}`);
-  console.log(`Color aktualnego statusu: ${statusColor}`);
-  console.log(`Twoja waga powinna wynosić pomiędzy: ${weightRange}`);
-  console.log(`BMR: ${BMR}`);
-  console.log(`Ilość potrzebnych kalorii: ${CPM} kcal`);
-  console.log(`Aktualna aktywność fizyczna: ${activityStatus}`);
-  console.log(`Wzkazówka: ${hint}`);
-  console.log(`Waga docelowa: ${targWeight}`);
-  console.log(`Docelowe BMI: ${targBMI}`);
-  console.log(`Docelowe status: ${targStatus}`);
-  console.log(`Color docelowego statusu: ${targStatusColor}`);
-  console.log(`liczba miesięcy: ${numberOfMonths}`);
-  console.log(`liczba tygodni: ${numberOfWeeks}`);
-  console.log(`liczba dni: ${numberOfDays}`);
-  console.log(`liczba wyświetlanych miesięcy: ${MonthsDisplayNumber}`);
-  console.log(`liczba wyświetlanych tygodni: ${WeeksDisplayNumber}`);
-  console.log(`liczba wyświetlanych dni: ${DaysDisplayNumber}`);
-  console.log(
-    `Aby schudnąć/przytyć musisz codziennie spożywać/palić: ${diffCalories}`
-  );
-  console.log(`Musisz zrzucić/przytyć ${diffWeight}kg`);
-  console.log(
-    `liczba zrzuconych/przybranych kg na miesiąc: ${diffWeightMonth}`
-  );
-  console.log(`liczba zrzuconych/przybranych kg na tydzień: ${diffWeightWeek}`);
-  console.log(`liczba zrzuconych/przybranych kg na dzień: ${diffWeightDay}`);
-  console.log(`Wymagana aktywność fizyczna: ${activityTargStatus}`);
 }
