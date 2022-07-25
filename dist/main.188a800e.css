@@ -547,11 +547,11 @@ body.dark .select__p--active {
   font-size: 1.2rem;
 }
 .personInfo__p {
-  line-height: 1.7;
-  font-size: 23px;
+  line-height: 1.5;
+  font-size: 24px;
 }
 .personInfo__p--big {
-  font-size: 27px;
+  font-size: 30px;
 }
 .personInfo__p--bigger {
   font-size: 41px;

@@ -216,7 +216,7 @@ exports.checkInputNumber = checkInputNumber;
 
 function checkInputNumber(e) {
   if (e.target.value < 1) {
-    e.target.value = 1;
+    e.target.value = "";
   } else {
     if (e.target.name === "age") {
       if (e.target.value > 199) e.target.value = 199;
@@ -297,7 +297,7 @@ var _Wygłodzenie2 = _interopRequireDefault(require("../img/female/Wyg\u0142odze
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function showResults(age, gender, weight, height, BMI, status, statusColor, CPM, weightRange, BMR, activity, hint, targWeight, targBMI, targStatus, targStatusColor, months, weeks, days, diffCalories, diffWeight, diffWeightMonth, diffWeightWeek, diffWeightDay, targActivity) {
+function showResults(age, gender, weight, height, BMI, status, statusColor, CPM, weightRange, BMR, activity, hint, targWeight, targBMI, targStatus, targStatusColor, days, diffCalories, diffWeight, diffWeightDay, targActivity) {
   var results = document.querySelector(".results");
   var resultsBtn = document.querySelector(".results__btn");
   var personImg = document.querySelector(".personInfo__imgAct");
@@ -307,23 +307,14 @@ function showResults(age, gender, weight, height, BMI, status, statusColor, CPM,
   var personInfoBMITargP = document.querySelectorAll(".personInfo__bmiTargInfo > .personInfo__p--bold");
   var graphicDes1 = document.querySelectorAll(".results__graphic1 .graphic__des");
   var graphicDes2 = document.querySelectorAll(".results__graphic2 .graphic__des");
-  console.log(personInfoBMIP);
   personInfoBMITargP.forEach(function (p) {
     return p.style.color = targStatusColor;
   });
   personInfoBMIP.forEach(function (p) {
     return p.style.color = statusColor;
   });
-  graphicDes1.forEach(function (des) {
-    if (des.textContent === status) {
-      des.parentElement.classList.add("graphic__el--active");
-    }
-  });
-  graphicDes2.forEach(function (des) {
-    if (des.textContent === targStatus) {
-      des.parentElement.classList.add("graphic__el--active");
-    }
-  });
+  showOrClearGraphic("clear");
+  showOrClearGraphic("show");
   personImg.src = getImage(gender, status);
   personTargImg.src = getImage(gender, targStatus);
   personImg.alt = "\n    Kolorowa sylwetka ".concat(genderDisplay.replace("a", "y").toLowerCase(), " zaklasyfikowywana jako: ").concat(status, "\n  ");
@@ -349,19 +340,36 @@ function showResults(age, gender, weight, height, BMI, status, statusColor, CPM,
   setComponentInfo("results", "CPM", CPM);
   setComponentInfo("results", "activity", activity);
   setComponentInfo("results", "hint", hint);
-  setComponentInfo("results", "months", "miesi\u0105ce: ".concat(months));
-  setComponentInfo("results", "weeks", "tygodnie: ".concat(weeks));
-  setComponentInfo("results", "days", "dni: ".concat(days));
+  setComponentInfo("results", "days", "ilo\u015B\u0107 dni: ".concat(days));
   setComponentInfo("results", "diffCalories", diffCalories);
   setComponentInfo("results", "diffWeight", diffWeight);
-  setComponentInfo("results", "diffWeightMonth", "".concat(diffWeightMonth, " kg"));
-  setComponentInfo("results", "diffWeightWeek", "".concat(diffWeightWeek, " kg"));
-  setComponentInfo("results", "diffWeightDay", "".concat(diffWeightDay, " kg"));
+  setComponentInfo("results", "diffWeightDay", "dzie\u0144: ".concat(diffWeightDay, " kg"));
   setComponentInfo("results", "targActivity", targActivity);
   results.classList.remove("results--hidden");
 
   function setComponentInfo(component, info, infoValue) {
-    document.querySelector(".".concat(component, "__").concat(info)).textContent = infoValue;
+    var selector = document.querySelector(".".concat(component, "__").concat(info));
+    selector.textContent = infoValue;
+  }
+
+  function showOrClearGraphic(command) {
+    if (command === "clear") {
+      var allGraphicEl = document.querySelectorAll(".graphic__el");
+      allGraphicEl.forEach(function (el) {
+        return el.classList.remove("graphic__el--active");
+      });
+    } else {
+      graphicDes1.forEach(function (des) {
+        if (des.textContent === status) {
+          des.parentElement.classList.add("graphic__el--active");
+        }
+      });
+      graphicDes2.forEach(function (des) {
+        if (des.textContent === targStatus) {
+          des.parentElement.classList.add("graphic__el--active");
+        }
+      });
+    }
   }
 
   function getImage(gender, status) {
@@ -467,29 +475,17 @@ function calculate(age, gender, weight, height, activity, targWeight, startDate,
   var targStatus = getBMIStatusAndColor(targBMI).status;
   var targStatusColor = getBMIStatusAndColor(targBMI).color;
   var activityStatus = getActivityStatus(activity);
-  var diffWeight;
-  var diffWeightMonth, diffWeightWeek, diffWeightDay;
-  var numberOfMonths = Math.floor((endDate - startDate) / 2592000000);
-  var numberOfWeeks = Math.floor((endDate - startDate) / 604800000);
-  var numberOfDays = Math.floor((endDate - startDate) / 86400000);
-  var MonthsDisplayNumber = Math.floor(numberOfDays / 30);
-  var WeeksDisplayNumber;
+  var days = Math.floor((endDate - startDate) / 86400000);
+  days === 0 ? days = 1 : days;
+  var diffWeight = Math.abs(weight - targWeight);
+  var diffWeightDay = Math.round(diffWeight / days * 100) / 100;
   var hint = "";
-  var activityTargStatus = "";
+  var targActivity = "";
   var BMR;
   if (gender === "male") BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age + 5);else BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age - 161);
   var CPM = Math.floor(BMR * getPAL(activity));
-  if (weight === targWeight) diffWeight = 0;else if (weight > targWeight) diffWeight = weight - targWeight;else diffWeight = targWeight - weight;
-  if (numberOfMonths === 0) diffWeightMonth = 0;else diffWeightMonth = Math.round(diffWeight / numberOfMonths * 100) / 100;
-  if (numberOfWeeks === 0) diffWeightWeek = 0;else diffWeightWeek = Math.round(diffWeight / numberOfWeeks * 100) / 100;
-  if (numberOfDays === 0) diffWeightDay = 0;else diffWeightDay = Math.round(diffWeight / numberOfDays * 100) / 100;
-  if (MonthsDisplayNumber === 0) WeeksDisplayNumber = Math.floor(numberOfDays / 7);else {
-    WeeksDisplayNumber = Math.floor(numberOfWeeks / (MonthsDisplayNumber * 4));
-    if (MonthsDisplayNumber === 1 && numberOfWeeks === 4) WeeksDisplayNumber = 0;
-  }
-  var DaysDisplayNumber = Math.floor(numberOfDays - MonthsDisplayNumber * 30 - WeeksDisplayNumber * 7);
-  var diffCalories = Math.round(diffWeight * 7700 / (numberOfDays === 0 ? numberOfDays = 1 : numberOfDays));
-  (0, _showResults.showResults)(age, gender, weight, height, BMI, status, statusColor, CPM, weightRange, BMR, activityStatus, hint, targWeight, targBMI, targStatus, targStatusColor, MonthsDisplayNumber, WeeksDisplayNumber, DaysDisplayNumber, diffCalories, diffWeight, diffWeightMonth, diffWeightWeek, diffWeightDay, activityTargStatus);
+  var diffCalories = Math.round(diffWeight * 7700 / days);
+  (0, _showResults.showResults)(age, gender, weight, height, BMI, status, statusColor, CPM, weightRange, BMR, activityStatus, hint, targWeight, targBMI, targStatus, targStatusColor, days, diffCalories, diffWeight, diffWeightDay, targActivity);
 
   function getBMIStatusAndColor(BMI) {
     var status;
@@ -598,40 +594,6 @@ function calculate(age, gender, weight, height, activity, targWeight, startDate,
 
     return PAL;
   }
-
-  console.log("Wiek: ".concat(age, " lat"));
-  console.log("P\u0142e\u0107: ".concat(gender === "male" ? "Mężczyzna" : "Kobieta"));
-  console.log("Waga: ".concat(weight, " kg"));
-  console.log("Wzrost: ".concat(height, " cm"));
-  console.log("Numer aktywno\u015Bci fizycznej z listy: ".concat(activity));
-  console.log("Waga docelowa: ".concat(targWeight, " kg"));
-  console.log("Data rozpocz\u0119cia: ".concat(new Date(startDate).toLocaleString("pl")));
-  console.log("Data zako\u0144czenia: ".concat(new Date(endDate).toLocaleString("pl")));
-  console.log("----------------------WYNIKI----------------------");
-  console.log("Aktualne BMI: ".concat(BMI));
-  console.log("Aktualny status: ".concat(status));
-  console.log("Color aktualnego statusu: ".concat(statusColor));
-  console.log("Twoja waga powinna wynosi\u0107 pomi\u0119dzy: ".concat(weightRange));
-  console.log("BMR: ".concat(BMR));
-  console.log("Ilo\u015B\u0107 potrzebnych kalorii: ".concat(CPM, " kcal"));
-  console.log("Aktualna aktywno\u015B\u0107 fizyczna: ".concat(activityStatus));
-  console.log("Wzkaz\xF3wka: ".concat(hint));
-  console.log("Waga docelowa: ".concat(targWeight));
-  console.log("Docelowe BMI: ".concat(targBMI));
-  console.log("Docelowe status: ".concat(targStatus));
-  console.log("Color docelowego statusu: ".concat(targStatusColor));
-  console.log("liczba miesi\u0119cy: ".concat(numberOfMonths));
-  console.log("liczba tygodni: ".concat(numberOfWeeks));
-  console.log("liczba dni: ".concat(numberOfDays));
-  console.log("liczba wy\u015Bwietlanych miesi\u0119cy: ".concat(MonthsDisplayNumber));
-  console.log("liczba wy\u015Bwietlanych tygodni: ".concat(WeeksDisplayNumber));
-  console.log("liczba wy\u015Bwietlanych dni: ".concat(DaysDisplayNumber));
-  console.log("Aby schudn\u0105\u0107/przyty\u0107 musisz codziennie spo\u017Cywa\u0107/pali\u0107: ".concat(diffCalories));
-  console.log("Musisz zrzuci\u0107/przyty\u0107 ".concat(diffWeight, "kg"));
-  console.log("liczba zrzuconych/przybranych kg na miesi\u0105c: ".concat(diffWeightMonth));
-  console.log("liczba zrzuconych/przybranych kg na tydzie\u0144: ".concat(diffWeightWeek));
-  console.log("liczba zrzuconych/przybranych kg na dzie\u0144: ".concat(diffWeightDay));
-  console.log("Wymagana aktywno\u015B\u0107 fizyczna: ".concat(activityTargStatus));
 }
 },{"./showResults":"../src/js/showResults.js"}],"../src/js/validateForm.js":[function(require,module,exports) {
 "use strict";
@@ -681,53 +643,50 @@ function validateForm() {
     p.classList.add("fieldset__inputError--hidden");
   });
   chechInputsDate();
-  /*
+
   switch ("") {
     case ageInputValue.value:
       displayError(0);
       return;
-    case gender:
+
+    case _getGender.gender:
       displayError(1);
       return;
+
     case weightInputValue.value:
       displayError(2);
       return;
+
     case activity:
       displayError(3);
       return;
+
     case targWeightInputValue.value:
       displayError(4);
       return;
+
     case startDateInputValue.value:
       displayError(5);
       return;
+
     case startDate:
       displayError(6);
       return;
+
     case endDateInputValue.value:
       displayError(7);
       return;
+
     case endDate:
       displayError(8);
       return;
   }
-  */
 
   var age = Number(ageInputValue.value);
   var weight = Number(weightInputValue.value);
   var height = Number(heightInputValue.value);
-  var targWeight = Number(targWeightInputValue.value); // calculate(
-  //   age,
-  //   gender,
-  //   weight,
-  //   height,
-  //   activity,
-  //   targWeight,
-  //   startDate,
-  //   endDate
-  // );
-
-  (0, _calculate.calculate)(24, "male", 138, 181, 3, 35, new Date("2022-10-01").getTime(), new Date("2022-12-22").getTime());
+  var targWeight = Number(targWeightInputValue.value);
+  (0, _calculate.calculate)(age, _getGender.gender, weight, height, activity, targWeight, startDate, endDate);
 
   function displayError(nr) {
     errorPInputs[nr].classList.remove("fieldset__inputError--hidden");
