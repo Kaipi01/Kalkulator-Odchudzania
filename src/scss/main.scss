@@ -148,6 +148,19 @@ body {
     padding: 24px 35px;
   }
 
+  &__hint {
+    padding: 10px;
+    text-align: left;
+    @media only screen and (max-width: 500px) {
+      font-size: 18px;
+      padding: 0px;
+    }
+  }
+
+  &__diet {
+    padding: 0 10px;
+  }
+
   &__p {
     margin-top: 10px;
 
