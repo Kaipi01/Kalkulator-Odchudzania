@@ -1,6 +1,9 @@
 node_modules/
+dist/
 .cache
 .vscode
 tempCodeRunnerFile.js
 info.txt
 untils.js
+package.json
+package-lock.json
