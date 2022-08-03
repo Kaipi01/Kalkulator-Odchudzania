@@ -15,19 +15,15 @@ export function calculate(
   const minWeight = Math.round(0.00185 * Math.pow(height, 2));
   const maxWeight = Math.round(0.0025 * Math.pow(height, 2));
   const weightRange = `${minWeight} kg - ${maxWeight} kg`;
-  const status = getBMIStatusAndColor(BMI).status;
-  const statusColor = getBMIStatusAndColor(BMI).color;
-  const targStatus = getBMIStatusAndColor(targBMI).status;
-  const targStatusColor = getBMIStatusAndColor(targBMI).color;
+
   const activityStatus = getActivityStatus(activity);
 
   let days = Math.floor((endDate - startDate) / 86400000);
   days === 0 ? (days = 1) : days;
 
+  const isLostWeight = weight >= targWeight;
   const diffWeight = Math.abs(weight - targWeight);
   const diffWeightDay = Math.round((diffWeight / days) * 100) / 100;
-  const hint = "";
-  const targActivity = "";
 
   let BMR;
 
@@ -44,67 +40,18 @@ export function calculate(
     weight,
     height,
     BMI,
-    status,
-    statusColor,
     CPM,
     weightRange,
     BMR,
     activityStatus,
-    hint,
     targWeight,
     targBMI,
-    targStatus,
-    targStatusColor,
     days,
     diffCalories,
     diffWeight,
     diffWeightDay,
-    targActivity
+    isLostWeight
   );
-
-  function getBMIStatusAndColor(BMI) {
-    let status;
-    let color;
-
-    switch (true) {
-      case BMI < 16:
-        status = "Wygłodzenie";
-        color = "#00ffd9";
-        break;
-      case BMI >= 16 && BMI < 17:
-        status = "Wychudzenie";
-        color = "#00c187";
-        break;
-      case BMI >= 17 && BMI < 18.5:
-        status = "Niedowaga";
-        color = "#008e63";
-        break;
-      case BMI >= 18.5 && BMI < 25:
-        status = "Prawidłowa masa ciała";
-        color = "#26be00";
-        break;
-      case BMI >= 25 && BMI < 30:
-        status = "Nadwaga";
-        color = "#ffea00";
-        break;
-      case BMI >= 30 && BMI < 35:
-        status = "Otyłość I stopnia";
-        color = "#ff9100";
-        break;
-      case BMI >= 35 && BMI < 40:
-        status = "Otyłość II stopnia";
-        color = "#ff0000";
-        break;
-      case BMI >= 40:
-        status = "Otyłość III stopnia";
-        color = "#b00000";
-        break;
-    }
-    return {
-      status: status,
-      color: color,
-    };
-  }
 
   function getActivityStatus(activity) {
     let activitysStatus;
