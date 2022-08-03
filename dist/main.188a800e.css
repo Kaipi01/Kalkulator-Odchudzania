@@ -531,7 +531,8 @@ body.dark .select__p--active {
   }
 }
 .personInfo__img {
-  width: 200px;
+  width: 230px;
+  max-height: 500px;
 }
 .personInfo__container {
   display: flex;
@@ -746,6 +747,19 @@ body.dark {
   display: block;
   margin: 50px auto;
   padding: 24px 35px;
+}
+.results__hint {
+  padding: 10px;
+  text-align: left;
+}
+@media only screen and (max-width: 500px) {
+  .results__hint {
+    font-size: 18px;
+    padding: 0px;
+  }
+}
+.results__diet {
+  padding: 0 10px;
 }
 .results__p {
   margin-top: 10px;

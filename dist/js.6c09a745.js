@@ -297,12 +297,18 @@ var _Wygłodzenie2 = _interopRequireDefault(require("../img/female/Wyg\u0142odze
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function showResults(age, gender, weight, height, BMI, status, statusColor, CPM, weightRange, BMR, activity, hint, targWeight, targBMI, targStatus, targStatusColor, days, diffCalories, diffWeight, diffWeightDay, targActivity) {
+function showResults(age, gender, weight, height, BMI, CPM, weightRange, BMR, activity, targWeight, targBMI, days, diffCalories, diffWeight, diffWeightDay, isLostWeight) {
+  var status = getStatusHintColor(BMI).status;
+  var statusColor = getStatusHintColor(BMI).color;
+  var targStatus = getStatusHintColor(targBMI).status;
+  var targStatusColor = getStatusHintColor(targBMI).color;
+  var hint = getStatusHintColor(BMI).hint;
   var results = document.querySelector(".results");
   var resultsBtn = document.querySelector(".results__btn");
   var personImg = document.querySelector(".personInfo__imgAct");
   var personTargImg = document.querySelector(".personInfo__imgTarg");
   var genderDisplay = gender === "male" ? "Mężczyzna" : "Kobieta";
+  var diffWeightSpan = document.querySelectorAll(".results__diffWeightSpan");
   var personInfoBMIP = document.querySelectorAll(".personInfo__bmiInfo > .personInfo__p--bold");
   var personInfoBMITargP = document.querySelectorAll(".personInfo__bmiTargInfo > .personInfo__p--bold");
   var graphicDes1 = document.querySelectorAll(".results__graphic1 .graphic__des");
@@ -326,6 +332,13 @@ function showResults(age, gender, weight, height, BMI, status, statusColor, CPM,
       behavior: "smooth"
     });
   });
+  var loseWeight = ["spalonych", "zrzuconych", "zrzuconej"];
+  var gainWeight = ["dodatkowych", "przybranych", "przybranej"];
+  diffWeightSpan.forEach(function (span) {
+    if (isLostWeight) span.textContent = loseWeight.shift();else span.textContent = gainWeight.shift();
+  });
+  var diet = "";
+  if (isLostWeight) diet = "Aby zdrowo schudnąć trzeba zadabać o zbilansowaną diete. Niezbędne będzie picie odpowiedniej ilości wody, 2 litry to średnia ilość płynów, które powinien przyswajać człowek w ciągu jednego dnia. Woda wypełni żołądek i pomoże przyspieszyć przemianę materii. Zpożywaj produkty bogate w błonnik - ta substancja wspomaga prace jelit. Zadbaj o regularne pory posiłków aby nie sięgać po niezdrowe przekąski. Jedz dużo warzyw, owoców, węglowodanów, białka i tłuszczów roślinnych. Również trzeba zadbać o odpowiednią aktywność fizyczną, w celu spalenia zbędnego tłuszczu";else diet = "Aby zdrowo przytyć trzeba zdecydowanie zadbać o pełnowartościowe białko w diecie. Najlepiej sięgać po białko pochodzenia zwierzęcego: chude mięso, ryby, jaja, jogurty naturalne, biały ser. Dla wegan i wegetarian dobrej jakości źródła białka znajdą się w tofu, gotowanych nasionach roślin strączkowych, orzechach i kaszach. Dieta powinna zawierać też odpowiednią ilość witamin, minerałów i makroelementów. Pamiętać również trzeba o ćwiczeniach fizycznych w celu nabrania masy mięśniowej";
   setComponentInfo("personInfo", "status", status);
   setComponentInfo("personInfo", "age", "".concat(age, " lat"));
   setComponentInfo("personInfo", "gender", genderDisplay);
@@ -340,11 +353,11 @@ function showResults(age, gender, weight, height, BMI, status, statusColor, CPM,
   setComponentInfo("results", "CPM", CPM);
   setComponentInfo("results", "activity", activity);
   setComponentInfo("results", "hint", hint);
-  setComponentInfo("results", "days", "ilo\u015B\u0107 dni: ".concat(days));
+  setComponentInfo("results", "days", "".concat(days));
   setComponentInfo("results", "diffCalories", diffCalories);
   setComponentInfo("results", "diffWeight", diffWeight);
-  setComponentInfo("results", "diffWeightDay", "dzie\u0144: ".concat(diffWeightDay, " kg"));
-  setComponentInfo("results", "targActivity", targActivity);
+  setComponentInfo("results", "diffWeightDay", "".concat(diffWeightDay));
+  setComponentInfo("results", "diet", diet);
   results.classList.remove("results--hidden");
 
   function setComponentInfo(component, info, infoValue) {
@@ -453,6 +466,68 @@ function showResults(age, gender, weight, height, BMI, status, statusColor, CPM,
 
     return src;
   }
+
+  function getStatusHintColor(BMI) {
+    var status;
+    var color;
+    var hint;
+
+    switch (true) {
+      case BMI < 16:
+        status = "Wygłodzenie";
+        color = "#00ffd9";
+        hint = "Wynik wskazuje na skrajne niedożywienie. Taki stan może doprowadzić do wielu poważnych problemów jak stłuszczenia wątroby, upośledzenie odporności,czy zanik błony śluzowej jelita. Z czasem może dojść do zaburzeń pracy serca oraz ośrodkowego układu nerwowego, a w skrajnych przypadkach nawet do śmierci. Objawy niedożywienia to spadek masy ciała, utrata tkanki mięśniowej oraz tłuszczowej, senność, przewlekłe uczucie zmęczenia, zaburzenia miesiączki, zaburzenia koncentracji, apatia, rozdrażnienie oraz zmiany osobowości. Zalecane jak najszybsze zkontaktowanie sie z lekarzem lub specjalistą!";
+        break;
+
+      case BMI >= 16 && BMI < 17:
+        status = "Wychudzenie";
+        color = "#00c187";
+        hint = "Wynik wskazuje na niedożywienie. Taki stan może doprowadzić do wielu problemów zdrowotnych jak stłuszczenia wątroby, upośledzenie odporności,czy zanik błony śluzowej jelita. Z czasem może dojść do zaburzeń pracy serca oraz ośrodkowego układu nerwowego, a w skrajnych przypadkach nawet do śmierci. Objawy niedożywienia to spadek masy ciała, utrata tkanki mięśniowej oraz tłuszczowej, senność, przewlekłe uczucie zmęczenia, zaburzenia miesiączki, zaburzenia koncentracji, apatia, rozdrażnienie oraz zmiany osobowości. Zalecane  zkontaktowanie sie z lekarzem lub specjalistą";
+        break;
+
+      case BMI >= 17 && BMI < 18.5:
+        status = "Niedowaga";
+        color = "#008e63";
+        hint = "Twoja wartość wskaźnika BMI oznacza zbyt niską masę ciała w odniesieniu do wzrostu. Przyczyną może być przewlekle spożywanie zbyt małej ilości kilokalorii w ciągu dnia w odniesieniu do całkowitego zapotrzebowania kalorycznego organizmu. Niedowaga może również towarzyszyć przebiegowi niektórych chorób będąc ich objawem.Niska masa ciała jest związana m.in. z obniżeniem odporności organizmu, zwiększa ryzyko zaburzeń płodności, może być przyczyną problemów ze snem, a także powodować przewlekłe uczucie zmęczenia. Dlatego warto przyjrzeć się swojej diecie i skonsultować ją z dietetykiem, a stan zdrowia z lekarzem.";
+        break;
+
+      case BMI >= 18.5 && BMI < 25:
+        status = "Prawidłowa masa ciała";
+        color = "#26be00";
+        hint = "Gratulacje! Twoja masa ciała jest adekwatna do wzrostu. Aby utrzymać obecną masę ciała pamiętaj o stosowaniu zbilansowanej i zróżnicowanej diety. W jadłospisie warto uwzględnić co najmniej 400 g warzyw i owoców w ciągu dnia, wybierać produkty zbożowe z pełnego ziarna, nasiona strączków, naturalne produkty mleczne, orzechy, ryby oraz chude gatunki mięs. Korzystny wpływ na zachowanie zdrowia i utrzymanie masy ciała ma także regularna aktywność fizyczna.";
+        break;
+
+      case BMI >= 25 && BMI < 30:
+        status = "Nadwaga";
+        color = "#ffea00";
+        hint = "Przyjrzyj się temu, co ląduje na Twoim talerzu i wprowadź korzystne dla zdrowia zmiany. Zamiast produktów zbożowych oczyszczonych wybieraj pełnoziarniste, naturalne przetwory mleczne zamiast słodzonych, chude gatunki mięs zamiast tłustych, spożywać ryby 1-2 razy w tygodniu, a także sięgaj po warzywa i owoce zamiast słodkich przekąsek. Głównym źródłem płynów w ciągu dnia powinna być woda. Pamiętaj, aby jeść mniejsze porcje, ale częściej. Włącz dodatkową aktywność fizyczną, co znacznie ułatwi utratę zbędnych kilogramów.";
+        break;
+
+      case BMI >= 30 && BMI < 35:
+        status = "Otyłość I stopnia";
+        color = "#ff9100";
+        hint = "Nadmierna zawartość tkanki tłuszczowej zwiększa ryzyko rozwoju chorób układu sercowo-naczyniowego, takich jak niedokrwienna choroba serca, nadciśnienie tętnicze, a także chorób dietozależnych m.in. cukrzycy typu 2. Stanowi również większe obciążenie dla układu kostno-szkieletowego, zwiększając ryzyko rozwoju chorób zwyrodnieniowych. Ponieważ wysoki poziom tkanki tłuszczowej w ciele stanowi zagrożenie dla zdrowia i życia, warto podjąć działania ukierunkowane na obniżenie aktualnej masy ciała. W tym celu sugerujemy wizytę u lekarza specjalisty, który zaproponuje odpowiednie postępowanie lecznicze, a także dietetyka, który pomoże dopasować dietę do indywidualnych potrzeb.";
+        break;
+
+      case BMI >= 35 && BMI < 40:
+        status = "Otyłość II stopnia";
+        color = "#ff0000";
+        hint = "Otyłość zwiększa ryzyko rozwoju wielu chorób, takich jak cukrzyca typu 2, choroba wieńcowa, nadciśnienie tętnicze, zaburzenia płodności czy choroby zwyrodnieniowe. Dlatego warto podjąć działania mające na celu obniżenie obecnej masy ciała – zmianę dotychczasowego sposobu odżywiania się oraz podjęcie dodatkowej aktywności fizycznej. Sugerujemy również konsultację z lekarzem specjalizującym się w leczeniu otyłości, który zaproponuje odpowiednie postępowanie lecznicze.";
+        break;
+
+      case BMI >= 40:
+        status = "Otyłość III stopnia";
+        color = "#b00000";
+        hint = "Twoja wartość BMI wskazuje na otyłość III stopnia, czyli otyłość olbrzymią. Ten stan świadczy o bardzo wysokiej zawartości tkanki tłuszczowej w organizmie, która stanowi istotne obciążenie dla wielu układów m.in. krwionośnego, pokarmowego, oddechowego, a także kostno-stawowego. Ponieważ to stan bardzo niebezpieczny dla zdrowia i życia, zalecamy kontakt z lekarzem specjalizującym się w leczeniu osób z otyłością olbrzymią, który pomoże dopasować odpowiednie postępowanie lecznicze.";
+        break;
+    }
+
+    return {
+      status: status,
+      color: color,
+      hint: hint
+    };
+  }
 }
 },{"../img/male/Nadwaga.svg":"../src/img/male/Nadwaga.svg","../img/male/Niedowaga.svg":"../src/img/male/Niedowaga.svg","../img/male/Otyłość I stopnia.svg":"../src/img/male/Otyłość I stopnia.svg","../img/male/Otyłość II stopnia.svg":"../src/img/male/Otyłość II stopnia.svg","../img/male/Otyłość III stopnia.svg":"../src/img/male/Otyłość III stopnia.svg","../img/male/Prawidłowa masa ciała.svg":"../src/img/male/Prawidłowa masa ciała.svg","../img/male/Wychudzenie.svg":"../src/img/male/Wychudzenie.svg","../img/male/Wygłodzenie.svg":"../src/img/male/Wygłodzenie.svg","../img/female/Nadwaga.svg":"../src/img/female/Nadwaga.svg","../img/female/Niedowaga.svg":"../src/img/female/Niedowaga.svg","../img/female/Otyłość I stopnia.svg":"../src/img/female/Otyłość I stopnia.svg","../img/female/Otyłość II stopnia.svg":"../src/img/female/Otyłość II stopnia.svg","../img/female/Otyłość III stopnia.svg":"../src/img/female/Otyłość III stopnia.svg","../img/female/Prawidłowa masa ciała.svg":"../src/img/female/Prawidłowa masa ciała.svg","../img/female/Wychudzenie.svg":"../src/img/female/Wychudzenie.svg","../img/female/Wygłodzenie.svg":"../src/img/female/Wygłodzenie.svg"}],"../src/js/calculate.js":[function(require,module,exports) {
 "use strict";
@@ -470,74 +545,17 @@ function calculate(age, gender, weight, height, activity, targWeight, startDate,
   var minWeight = Math.round(0.00185 * Math.pow(height, 2));
   var maxWeight = Math.round(0.0025 * Math.pow(height, 2));
   var weightRange = "".concat(minWeight, " kg - ").concat(maxWeight, " kg");
-  var status = getBMIStatusAndColor(BMI).status;
-  var statusColor = getBMIStatusAndColor(BMI).color;
-  var targStatus = getBMIStatusAndColor(targBMI).status;
-  var targStatusColor = getBMIStatusAndColor(targBMI).color;
   var activityStatus = getActivityStatus(activity);
   var days = Math.floor((endDate - startDate) / 86400000);
   days === 0 ? days = 1 : days;
+  var isLostWeight = weight >= targWeight;
   var diffWeight = Math.abs(weight - targWeight);
   var diffWeightDay = Math.round(diffWeight / days * 100) / 100;
-  var hint = "";
-  var targActivity = "";
   var BMR;
   if (gender === "male") BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age + 5);else BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age - 161);
   var CPM = Math.floor(BMR * getPAL(activity));
   var diffCalories = Math.round(diffWeight * 7700 / days);
-  (0, _showResults.showResults)(age, gender, weight, height, BMI, status, statusColor, CPM, weightRange, BMR, activityStatus, hint, targWeight, targBMI, targStatus, targStatusColor, days, diffCalories, diffWeight, diffWeightDay, targActivity);
-
-  function getBMIStatusAndColor(BMI) {
-    var status;
-    var color;
-
-    switch (true) {
-      case BMI < 16:
-        status = "Wygłodzenie";
-        color = "#00ffd9";
-        break;
-
-      case BMI >= 16 && BMI < 17:
-        status = "Wychudzenie";
-        color = "#00c187";
-        break;
-
-      case BMI >= 17 && BMI < 18.5:
-        status = "Niedowaga";
-        color = "#008e63";
-        break;
-
-      case BMI >= 18.5 && BMI < 25:
-        status = "Prawidłowa masa ciała";
-        color = "#26be00";
-        break;
-
-      case BMI >= 25 && BMI < 30:
-        status = "Nadwaga";
-        color = "#ffea00";
-        break;
-
-      case BMI >= 30 && BMI < 35:
-        status = "Otyłość I stopnia";
-        color = "#ff9100";
-        break;
-
-      case BMI >= 35 && BMI < 40:
-        status = "Otyłość II stopnia";
-        color = "#ff0000";
-        break;
-
-      case BMI >= 40:
-        status = "Otyłość III stopnia";
-        color = "#b00000";
-        break;
-    }
-
-    return {
-      status: status,
-      color: color
-    };
-  }
+  (0, _showResults.showResults)(age, gender, weight, height, BMI, CPM, weightRange, BMR, activityStatus, targWeight, targBMI, days, diffCalories, diffWeight, diffWeightDay, isLostWeight);
 
   function getActivityStatus(activity) {
     var activitysStatus;
@@ -874,7 +892,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53071" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49758" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
