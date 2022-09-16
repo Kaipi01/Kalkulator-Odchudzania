@@ -1,23 +1,23 @@
-@use "variables" as var;
-@use "extends/mixins" as mixins;
+@use "utils/variables" as var;
+@use "utils/mixins" as mixins;
 
 .select {
   @include mixins.setFlex();
+  border-bottom: 3px solid var.$secondaryLight;
+  color: var.$secondaryLight;
+  cursor: pointer;
   flex-wrap: wrap;
   gap: 10px;
-  cursor: pointer;
+  max-width: 700px;
   padding: 15px;
   padding-bottom: 5px;
-  max-width: 700px;
-  color: var.$secondaryLight;
   text-align: center;
-  border-bottom: 3px solid var.$secondaryLight;
   transition: all 0.2s ease-in-out;
 
   &:focus,
   &:active {
-    color: var.$primaryLight;
     border-color: var.$primaryLight;
+    color: var.$primaryLight;
   }
 
   &__p {
@@ -31,16 +31,16 @@
   }
 
   &__list {
-    position: absolute;
-    list-style: none;
-    background: var.$selectLight;
     backdrop-filter: blur(12px);
+    background: var.$selectLight;
     border-radius: 30px;
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
+    display: none;
+    list-style: none;
+    position: absolute;
     top: 175px;
     z-index: 2;
-    display: none;
 
     &--active {
       display: block;
@@ -48,11 +48,11 @@
   }
 
   &__listItem {
+    border-bottom: 2px solid var.$secondaryLight;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
     display: block;
     padding: 15px 10px;
-    border-bottom: 2px solid var.$secondaryLight;
+    transition: all 0.3s ease-in-out;
 
     &:last-child {
       border-radius: 30px;
@@ -61,8 +61,8 @@
     &:hover,
     &:focus,
     &:active {
-      color: var.$primaryLight;
       border-bottom-color: var.$primaryLight;
+      color: var.$primaryLight;
     }
   }
 
@@ -77,13 +77,13 @@
 // dark theme
 
 body.dark .select {
-  color: var.$secondaryDark;
   border-bottom: 3px solid var.$secondaryDark;
+  color: var.$secondaryDark;
 
   &:focus,
   &:active {
-    color: var.$primaryDark;
     border-color: var.$primaryDark;
+    color: var.$primaryDark;
   }
 
   &__list {
@@ -96,8 +96,8 @@ body.dark .select {
     &:hover,
     &:focus,
     &:active {
-      color: var.$primaryDark;
       border-bottom-color: var.$primaryDark;
+      color: var.$primaryDark;
     }
   }
 

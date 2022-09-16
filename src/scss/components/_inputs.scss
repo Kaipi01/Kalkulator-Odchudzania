@@ -1,27 +1,27 @@
-@use "variables" as var;
+@use "utils/variables" as var;
 
 .input {
-  padding: 5px;
-  width: 80%;
   background: transparent;
-  font-size: 33px;
-  font-weight: bold;
-  color: var.$primaryLight;
-  text-align: center;
   border: none;
   border-bottom: 3px solid var.$secondaryLight;
+  color: var.$primaryLight;
+  font-size: 33px;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
   transition: all 0.2s ease-in-out;
+  width: 80%;
 
   &:focus,
   &:active {
-    outline: none;
     border-color: var.$primaryLight;
+    outline: none;
   }
 }
 
 body.dark .input {
-  color: var.$primaryDark;
   border-color: var.$secondaryDark;
+  color: var.$primaryDark;
 
   &:focus,
   &:active {
@@ -31,14 +31,18 @@ body.dark .input {
 
 //---------------INPUT NUMBER---------------
 
-.inputNumber::placeholder {
-  font-size: 24px;
-  font-weight: normal;
-  color: var.$secondaryLight;
+.inputNumber {
+  &::placeholder {
+    color: var.$secondaryLight;
+    font-size: 24px;
+    font-weight: normal;
+  }
 }
 
-body.dark .inputNumber::placeholder {
-  color: var.$secondaryDark;
+body.dark .inputNumber {
+  &::placeholder {
+    color: var.$secondaryDark;
+  }
 }
 
 //---------------INPUT DATE---------------
@@ -82,47 +86,47 @@ body.dark .inputDate {
 
 .inputRange {
   -webkit-appearance: none;
+  background: transparent;
   margin: 30px 0;
   width: 80%;
-  background: transparent;
 
   &__value {
-    position: absolute;
-    top: 140px;
-    left: 50%;
-    transform: translateX(-50%);
+    color: var.$primaryLight;
     font-size: 26px;
     font-weight: bold;
-    color: var.$primaryLight;
+    left: 50%;
+    position: absolute;
+    top: 140px;
+    transform: translateX(-50%);
   }
 
   &::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: pointer;
     background: var.$primaryLight;
     border-radius: 10px;
     border: 0.2px solid #010101;
+    cursor: pointer;
+    height: 8.4px;
+    width: 100%;
   }
 
   &::-webkit-slider-thumb {
-    border: 1px solid #000000;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: var.$primaryLight;
-    cursor: pointer;
     -webkit-appearance: none;
+    background: var.$primaryLight;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 30px;
     margin-top: -12px;
+    width: 30px;
   }
 
   &::-moz-range-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: pointer;
     background: var.$primaryLight;
     border-radius: 10px;
     border: 0.2px solid #010101;
+    cursor: pointer;
+    height: 8.4px;
+    width: 100%;
   }
 
   &:focus::-webkit-slider-runnable-track {
@@ -139,13 +143,13 @@ body.dark .inputDate {
   }
 
   &::-ms-track {
-    width: 100%;
-    height: 8.4px;
-    cursor: pointer;
     background: transparent;
     border-color: transparent;
     border-width: 16px 0;
+    cursor: pointer;
     color: transparent;
+    height: 8.4px;
+    width: 100%;
   }
 
   &::-ms-fill-lower {
@@ -161,12 +165,12 @@ body.dark .inputDate {
   }
 
   &::-ms-thumb {
+    background: #ffffff;
     border: 1px solid #000000;
+    border-radius: 50%;
+    cursor: pointer;
     height: 30px;
     width: 30px;
-    border-radius: 50%;
-    background: #ffffff;
-    cursor: pointer;
   }
 }
 

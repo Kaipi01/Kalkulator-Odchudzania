@@ -1,7 +1,9 @@
-@use "variables" as var;
+@use "utils/variables" as var;
 
 .hintIcon {
+  text-decoration: none;
   transition: all 0.2s ease-in-out;
+  
 
   &__dfn {
     font-weight: bold;
@@ -9,22 +11,22 @@
   }
 
   &__modal {
-    color: var.$fontLight;
-    max-width: 600px;
-    padding: 30px;
-    @media only screen and (max-width: 768px) {
-      right: 0;
-      width: 90vw;
-      padding: 20px;
-    }
+    background-color: var.$selectLight;
     border: 4px solid var.$secondaryLight;
     border-radius: 30px;
-    position: absolute;
+    color: var.$fontLight;
     display: none;
-    text-align: left;
     font-weight: normal;
-    background-color: var.$selectLight;
+    max-width: 600px;
+    padding: 30px;
+    position: absolute;
+    text-align: left;
     z-index: 2;
+    @media only screen and (max-width: 768px) {
+      padding: 20px;
+      right: 0;
+      width: 90vw;
+    }
 
     &--active {
       display: block;
@@ -37,27 +39,27 @@
     content: "?";
     cursor: pointer;
     font-weight: normal;
-    padding: 0 6px;
     margin-bottom: 2px;
+    padding: 0 6px;
   }
 
   &:focus,
   &:hover {
-    color: var.$primaryLight;
     border-color: var.$primaryLight;
+    color: var.$primaryLight;
   }
 }
 
 body.dark .hintIcon {
   &:focus,
   &:hover {
-    color: var.$primaryDark;
     border-color: var.$primaryDark;
+    color: var.$primaryDark;
   }
 
   &__modal {
-    color: var.$fontDark;
     background-color: var.$selectDark;
     border-color: var.$secondaryDark;
+    color: var.$fontDark;
   }
 }

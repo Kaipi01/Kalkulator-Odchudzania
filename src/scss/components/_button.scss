@@ -1,23 +1,23 @@
-@use "variables" as var;
+@use "utils/variables" as var;
 
 .btn {
-  padding: 20px 65px;
-  font-size: 25px;
-  cursor: pointer;
-  border-radius: 15px;
   background: var.$primaryLight;
   border: none;
-  color: #fff;
+  border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 20px 65px;
   transition: all 0.3s ease-in-out;
 
   &:hover,
   &:focus,
   &:active {
-    color: rgb(0, 0, 0);
     background: var.$primaryDark;
     box-shadow: var.$primaryLight -5px 5px, var.$primaryLight -10px 10px,
       var.$primaryLight -15px 15px;
+    color: rgb(0, 0, 0);
     transform: translate(10px, -15px);
   }
 }

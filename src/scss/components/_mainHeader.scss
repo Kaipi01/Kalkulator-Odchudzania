@@ -1,0 +1,15 @@
+.mainHeader {
+  &__h1 {
+    font-size: 50px;
+    letter-spacing: 5px;
+    padding: 26px 0;
+    text-transform: uppercase;
+    text-align: center;
+    @media only screen and (max-width: 780px) {
+      font-size: 45px;
+    }
+    @media only screen and (max-width: 400px) {
+      font-size: 32px;
+    }
+  }
+}

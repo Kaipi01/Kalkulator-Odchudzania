@@ -1,66 +1,82 @@
-@use "variables" as var;
+@use "utils/variables" as var;
 
 .bgCircle {
+  -webkit-animation: swim 4s 0.5s ease-in-out infinite;
   animation: swim 4s 0.5s ease-in-out infinite;
-  position: absolute;
-  border-radius: 50%;
   background: var.$primaryDark;
+  border-radius: 50%;
+  position: absolute;
   z-index: -1;
 
   &--topLeft {
     background-color: var.$circleLight;
-    width: 70vw;
     height: 70vw;
-    top: -31vw;
     left: -32vw;
+    top: -31vw;
+    width: 70vw;
   }
 
   &--center {
+    -webkit-animation-delay: 2s;
     animation-delay: 2s;
-    width: 40vw;
     height: 40vw;
-    top: 4vw;
     right: 20vw;
+    top: 4vw;
+    width: 40vw;
   }
 
   &--centerRight {
     background-color: var.$circleLight;
-    width: 20vw;
     height: 20vw;
-    top: 21vw;
     right: 10vw;
+    top: 21vw;
+    width: 20vw;
   }
 
   &--bottomLeft {
-    width: 50vw;
     height: 50vw;
-    top: 175%;
     left: -20%;
+    top: 175%;
+    width: 50vw;
   }
 
   &--bottomRight {
     background-color: var.$circleLight;
-    width: 35vw;
     height: 35vw;
-    top: 255%;
     right: 2%;
+    top: 255%;
+    width: 35vw;
   }
 }
 
 // dark theme
 
-body.dark .bgCircle--center,
-body.dark .bgCircle--bottomRight {
-  background: var.$circleDark2;
+body.dark {
+  .bgCircle {
+    &--center,
+    &--bottomRight {
+      background: var.$circleDark2;
+    }
+
+    &--centerRight,
+    &--bottomLeft,
+    &--topLeft {
+      background: var.$circleDark1;
+    }
+  }
 }
 
-body.dark .bgCircle--centerRight,
-body.dark .bgCircle--bottomLeft,
-body.dark .bgCircle--topLeft {
-  background: var.$circleDark1;
+@-webkit-keyframes swim {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(6%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
-
-// animation
 
 @keyframes swim {
   0% {

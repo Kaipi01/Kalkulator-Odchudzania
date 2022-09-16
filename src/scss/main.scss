@@ -1,35 +1,35 @@
-@use "variables" as var;
-@use "extends/hidden" as hidden;
-@use "extends/mixins" as mixins;
+@use "utils/variables" as var;
+@use "utils/hidden" as hidden;
+@use "utils/mixins" as mixins;
 @use "components/bgCircles";
-@use "components/themeBtn";
 @use "components/button";
+@use "components/calculator";
 @use "components/fieldset";
-@use "components/inputs";
-@use "components/radioBtn";
-@use "components/select";
+@use "components/form";
 @use "components/graphic";
-@use "components/personInfo";
 @use "components/hintIcon";
-
-//---------------GENERAL SETTINGS---------------
+@use "components/inputs";
+@use "components/mainHeader";
+@use "components/personInfo";
+@use "components/radioBtn";
+@use "components/results";
+@use "components/select";
+@use "components/themeBtn";
 
 *,
 *::after,
 *::before {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-size: 21px;
 }
-
-//---------------BODY STYLING---------------
 
 body {
   background: var.$bgLight;
   background: var.$bgGradientLight;
   color: var.$fontLight;
   font-family: Helvetica, Arial, sans-serif;
+  font-size: 21px;
   scroll-behavior: smooth;
 
   &.dark {
@@ -37,158 +37,4 @@ body {
     background: var.$bgGradientDark;
     color: var.$fontDark;
   }
-}
-
-//---------------MAIN HEADER---------------
-
-.mainHeader__h1 {
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 55px;
-  @media only screen and (max-width: 780px) {
-    font-size: 45px;
-  }
-  @media only screen and (max-width: 400px) {
-    font-size: 32px;
-  }
-  letter-spacing: 5px;
-  padding: 26px 0;
-}
-
-//---------------CALCULATOR----------------
-
-.calculator {
-  max-width: 1500px;
-  margin: 30px auto 80px auto;
-
-  &__header {
-    padding: 20px 0;
-  }
-
-  &__h2 {
-    text-align: center;
-    font-size: 35px;
-    @media only screen and (max-width: 780px) {
-      font-size: 25px;
-    }
-    margin-bottom: 20px;
-  }
-
-  &__submitBtn {
-    display: block;
-    margin: 40px auto 0 auto;
-  }
-}
-
-// FORM STYLING
-
-.form {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 45px;
-}
-
-//---------------RESULT SECTION---------------
-
-.results {
-  max-width: 1410px;
-  margin: 0 auto;
-  width: 100%;
-
-  &--hidden {
-    display: none;
-  }
-
-  &__container {
-    background: var.$inputsLight;
-    width: 90%;
-    margin: 0 auto;
-    border-radius: 30px;
-    text-align: center;
-    backdrop-filter: blur(12px);
-    padding: 30px 0 60px 0;
-  }
-
-  &__data {
-    @include mixins.setFlex(column);
-    text-align: center;
-    max-width: 375px;
-    width: 90%;
-    min-height: 200px;
-    padding: 20px;
-    background: var.$secondaryDark;
-    border: 5px solid var.$primaryDark;
-    border-radius: 30px;
-
-    &Container {
-      @include mixins.setFlex();
-      flex-wrap: wrap;
-      gap: 25px;
-    }
-
-    &--wider {
-      max-width: 775px;
-    }
-  }
-
-  &__h3 {
-    font-size: 30px;
-    margin: 30px 0;
-  }
-
-  &__h4 {
-    font-size: 25px;
-    margin: 20px 0;
-  }
-
-  &__btn {
-    display: block;
-    margin: 50px auto;
-    padding: 24px 35px;
-  }
-
-  &__hint {
-    padding: 10px;
-    text-align: left;
-    @media only screen and (max-width: 500px) {
-      font-size: 18px;
-      padding: 0px;
-    }
-  }
-
-  &__diet {
-    padding: 0 10px;
-  }
-
-  &__p {
-    margin-top: 10px;
-
-    &--hidden {
-      display: none;
-    }
-
-    &--bold {
-      font-weight: bold;
-    }
-
-    &--big {
-      font-size: 40px;
-    }
-  }
-}
-
-body.dark .results {
-  &__container {
-    background: var.$inputsDark;
-  }
-
-  &__data {
-    background: var.$secondaryLight;
-    border-color: var.$primaryLight;
-  }
-}
-
-abbr {
-  text-decoration: none;
 }

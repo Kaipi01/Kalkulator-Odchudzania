@@ -1,0 +1,101 @@
+@use "utils/variables" as var;
+@use "utils/mixins" as mixins;
+
+.results {
+  margin: 0 auto;
+  max-width: 1410px;
+  width: 100%;
+
+  &--hidden {
+    display: none;
+  }
+
+  &__container {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: var.$inputsLight;
+    border-radius: 30px;
+    margin: 0 auto;
+    padding: 30px 0 60px 0;
+    text-align: center;
+    width: 90%;
+  }
+
+  &__data {
+    @include mixins.setFlex(column);
+    background: var.$secondaryDark;
+    border: 5px solid var.$primaryDark;
+    border-radius: 30px;
+    max-width: 375px;
+    min-height: 200px;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+
+    &Container {
+      @include mixins.setFlex();
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    &--wider {
+      max-width: 775px;
+    }
+  }
+
+  &__h3 {
+    font-size: 30px;
+    margin: 30px 0;
+  }
+
+  &__h4 {
+    font-size: 25px;
+    margin: 20px 0;
+  }
+
+  &__btn {
+    display: block;
+    margin: 50px auto;
+    padding: 24px 35px;
+  }
+
+  &__hint {
+    padding: 10px;
+    text-align: left;
+    @media only screen and (max-width: 500px) {
+      font-size: 18px;
+      padding: 0px;
+    }
+  }
+
+  &__diet {
+    padding: 0 10px;
+  }
+
+  &__p {
+    margin-top: 10px;
+
+    &--hidden {
+      display: none;
+    }
+
+    &--bold {
+      font-weight: bold;
+    }
+
+    &--big {
+      font-size: 40px;
+    }
+  }
+}
+
+body.dark .results {
+  &__container {
+    background: var.$inputsDark;
+  }
+
+  &__data {
+    background: var.$secondaryLight;
+    border-color: var.$primaryLight;
+  }
+}
