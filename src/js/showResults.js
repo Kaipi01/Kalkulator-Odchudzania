@@ -1,17 +1,17 @@
 import maleNadwaga from "../img/male/Nadwaga.svg";
 import maleNiedowaga from "../img/male/Niedowaga.svg";
-import maleOtyłośćIStopnia from "../img/male/Otyłość-I-stopnia.svg";
-import maleOtyłośćIIStopnia from "../img/male/Otyłość-II-stopnia.svg";
-import maleOtyłośćIIIStopnia from "../img/male/Otyłość-III-stopnia.svg";
-import malePrawidłowaMasaCiała from "../img/male/Prawidłowa-masa-ciała.svg";
+import maleOtyłośćIStopnia from "../img/male/Otyłość I stopnia.svg";
+import maleOtyłośćIIStopnia from "../img/male/Otyłość II stopnia.svg";
+import maleOtyłośćIIIStopnia from "../img/male/Otyłość III stopnia.svg";
+import malePrawidłowaMasaCiała from "../img/male/Prawidłowa masa ciała.svg";
 import maleWychudzenie from "../img/male/Wychudzenie.svg";
 import maleWygłodzenie from "../img/male/Wygłodzenie.svg";
 import femaleNadwaga from "../img/female/Nadwaga.svg";
 import femaleNiedowaga from "../img/female/Niedowaga.svg";
-import femaleOtyłośćIStopnia from "../img/female/Otyłość-I-stopnia.svg";
-import femaleOtyłośćIIStopnia from "../img/female/Otyłość-II-stopnia.svg";
-import femaleOtyłośćIIIStopnia from "../img/female/Otyłość-III-stopnia.svg";
-import femalePrawidłowaMasaCiała from "../img/female/Prawidłowa-masa-ciała.svg";
+import femaleOtyłośćIStopnia from "../img/female/Otyłość I stopnia.svg";
+import femaleOtyłośćIIStopnia from "../img/female/Otyłość II stopnia.svg";
+import femaleOtyłośćIIIStopnia from "../img/female/Otyłość III stopnia.svg";
+import femalePrawidłowaMasaCiała from "../img/female/Prawidłowa masa ciała.svg";
 import femaleWychudzenie from "../img/female/Wychudzenie.svg";
 import femaleWygłodzenie from "../img/female/Wygłodzenie.svg";
 
