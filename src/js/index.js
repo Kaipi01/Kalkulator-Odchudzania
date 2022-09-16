@@ -1,36 +1,34 @@
-import { changeTheme } from "./changeTheme";
-import { showList } from "./showList";
+import changeTheme from "./changeTheme";
+import showList from "./showList";
 import { getGender } from "./getGender";
-import { checkInputNumber } from "./checkInputNumber";
-import { validateForm } from "./validateForm";
+import checkInputNumber from "./checkInputNumber";
+import validateForm from "./validateForm";
 import { showToolTip, hideToolTip } from "./toolTip";
 
-const themeBtn = document.querySelector(".themeBtn");
-const inputDate = document.querySelectorAll(".inputDate");
-const select = document.querySelector(".select");
-const radioBtns = document.querySelectorAll(".radioBtn");
-const inputsNumber = document.querySelectorAll(".inputNumber");
-const inputRange = document.querySelector(".inputRange");
-const submitBtn = document.querySelector(".calculator__submitBtn");
-const hintIcon = document.querySelectorAll(".hintIcon");
+const themeBtn = document.querySelector(".themeBtn"),
+  inputDate = document.querySelectorAll(".inputDate"),
+  select = document.querySelector(".select"),
+  radioBtns = document.querySelectorAll(".radioBtn"),
+  inputsNumber = document.querySelectorAll(".inputNumber"),
+  inputRange = document.querySelector(".inputRange"),
+  submitBtn = document.querySelector(".calculator__submitBtn"),
+  hintIcon = document.querySelectorAll(".hintIcon");
+
+
+themeBtn.addEventListener("click", changeTheme);
 
 submitBtn.addEventListener("click", () => {
   validateForm();
-  const results = document.querySelector(`.results`);
-  window.scrollTo({
-    top: results.getBoundingClientRect().top + window.pageYOffset,
-    behavior: "smooth",
-  });
+  scrollToResults();
 });
 
-// change radio input color and check radio value
 radioBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
+    console.log(btn);
     getGender(btn);
   });
 });
 
-// show select list
 select.addEventListener("click", showList);
 select.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
@@ -38,7 +36,6 @@ select.addEventListener("keydown", (e) => {
   }
 });
 
-// show tool tip
 hintIcon.forEach((icon) => {
   icon.addEventListener("touch", (e) => showToolTip(e));
   icon.addEventListener("click", (e) => showToolTip(e));
@@ -50,7 +47,6 @@ window.addEventListener("touch", (e) => hideToolTip(e));
 window.addEventListener("click", (e) => hideToolTip(e));
 window.addEventListener("unfocus", (e) => hideToolTip(e));
 
-// change value in input range
 inputRange.addEventListener("click", () => {
   changeHeightValue();
 });
@@ -72,25 +68,27 @@ inputRange.addEventListener("keydown", (e) => {
   }
 });
 
-// chech number in input type number
 inputsNumber.forEach((input) => {
   input.addEventListener("input", (e) => {
     checkInputNumber(e);
   });
 });
 
-// show height value
-function changeHeightValue() {
-  const inputRangeValue = document.querySelector(".inputRange__value");
-  inputRangeValue.textContent = parseInt(inputRange.value);
-}
-
-//change theme on a page
-themeBtn.addEventListener("click", changeTheme);
-
-//focus on date type input
 inputDate.forEach((input) =>
   input.addEventListener("change", () => {
     input.classList.add("inputDate--focus");
   })
 );
+
+function changeHeightValue() {
+  const inputRangeValue = document.querySelector(".inputRange__value");
+  inputRangeValue.textContent = parseInt(inputRange.value);
+}
+
+function scrollToResults() {
+  const results = document.querySelector(`.results`);
+  window.scrollTo({
+    top: results.getBoundingClientRect().top + window.pageYOffset,
+    behavior: "smooth",
+  });
+}

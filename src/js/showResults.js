@@ -1,21 +1,21 @@
 import maleNadwaga from "../img/male/Nadwaga.svg";
 import maleNiedowaga from "../img/male/Niedowaga.svg";
-import maleOtyłośćIStopnia from "../img/male/Otyłość I stopnia.svg";
-import maleOtyłośćIIStopnia from "../img/male/Otyłość II stopnia.svg";
-import maleOtyłośćIIIStopnia from "../img/male/Otyłość III stopnia.svg";
-import malePrawidłowaMasaCiała from "../img/male/Prawidłowa masa ciała.svg";
+import maleOtyłośćIStopnia from "../img/male/Otyłość-I-stopnia.svg";
+import maleOtyłośćIIStopnia from "../img/male/Otyłość-II-stopnia.svg";
+import maleOtyłośćIIIStopnia from "../img/male/Otyłość-III-stopnia.svg";
+import malePrawidłowaMasaCiała from "../img/male/Prawidłowa-masa-ciała.svg";
 import maleWychudzenie from "../img/male/Wychudzenie.svg";
 import maleWygłodzenie from "../img/male/Wygłodzenie.svg";
 import femaleNadwaga from "../img/female/Nadwaga.svg";
 import femaleNiedowaga from "../img/female/Niedowaga.svg";
-import femaleOtyłośćIStopnia from "../img/female/Otyłość I stopnia.svg";
-import femaleOtyłośćIIStopnia from "../img/female/Otyłość II stopnia.svg";
-import femaleOtyłośćIIIStopnia from "../img/female/Otyłość III stopnia.svg";
-import femalePrawidłowaMasaCiała from "../img/female/Prawidłowa masa ciała.svg";
+import femaleOtyłośćIStopnia from "../img/female/Otyłość-I-stopnia.svg";
+import femaleOtyłośćIIStopnia from "../img/female/Otyłość-II-stopnia.svg";
+import femaleOtyłośćIIIStopnia from "../img/female/Otyłość-III-stopnia.svg";
+import femalePrawidłowaMasaCiała from "../img/female/Prawidłowa-masa-ciała.svg";
 import femaleWychudzenie from "../img/female/Wychudzenie.svg";
 import femaleWygłodzenie from "../img/female/Wygłodzenie.svg";
 
-export function showResults(
+export default function showResults(
   age,
   gender,
   weight,
@@ -33,30 +33,32 @@ export function showResults(
   diffWeightDay,
   isLostWeight
 ) {
-  const status = getStatusHintColor(BMI).status;
-  const statusColor = getStatusHintColor(BMI).color;
-  const targStatus = getStatusHintColor(targBMI).status;
-  const targStatusColor = getStatusHintColor(targBMI).color;
-  const hint = getStatusHintColor(BMI).hint;
-  const results = document.querySelector(".results");
-  const resultsBtn = document.querySelector(".results__btn");
-  const personImg = document.querySelector(".personInfo__imgAct");
-  const personTargImg = document.querySelector(".personInfo__imgTarg");
-  const genderDisplay = gender === "male" ? "Mężczyzna" : "Kobieta";
-  const diffWeightSpan = document.querySelectorAll(".results__diffWeightSpan");
-  const personInfoBMIP = document.querySelectorAll(
-    ".personInfo__bmiInfo > .personInfo__p--bold"
-  );
-  const personInfoBMITargP = document.querySelectorAll(
-    ".personInfo__bmiTargInfo > .personInfo__p--bold"
-  );
-
-  const graphicDes1 = document.querySelectorAll(
-    ".results__graphic1 .graphic__des"
-  );
-  const graphicDes2 = document.querySelectorAll(
-    ".results__graphic2 .graphic__des"
-  );
+  const status = getStatusHintColor(BMI).status,
+    statusColor = getStatusHintColor(BMI).color,
+    targStatus = getStatusHintColor(targBMI).status,
+    targStatusColor = getStatusHintColor(targBMI).color,
+    hint = getStatusHintColor(BMI).hint,
+    results = document.querySelector(".results"),
+    resultsBtn = document.querySelector(".results__btn"),
+    personImg = document.querySelector(".personInfo__imgAct"),
+    personTargImg = document.querySelector(".personInfo__imgTarg"),
+    genderDisplay = gender === "male" ? "Mężczyzna" : "Kobieta",
+    diffWeightSpan = document.querySelectorAll(".results__diffWeightSpan"),
+    personInfoBMIP = document.querySelectorAll(
+      ".personInfo__bmiInfo > .personInfo__p--bold"
+    ),
+    personInfoBMITargP = document.querySelectorAll(
+      ".personInfo__bmiTargInfo > .personInfo__p--bold"
+    ),
+    graphicDes1 = document.querySelectorAll(".results__graphic1 .graphic__des"),
+    graphicDes2 = document.querySelectorAll(".results__graphic2 .graphic__des"),
+    loseWeight = ["spalonych", "zrzuconych", "zrzuconej"],
+    gainWeight = ["dodatkowych", "przybranych", "przybranej"],
+    dietForLoseWeight =
+      "Aby zdrowo schudnąć trzeba zadabać o zbilansowaną diete. Niezbędne będzie picie odpowiedniej ilości wody, 2 litry to średnia ilość płynów, które powinien przyswajać człowek w ciągu jednego dnia. Woda wypełni żołądek i pomoże przyspieszyć przemianę materii. Zpożywaj produkty bogate w błonnik - ta substancja wspomaga prace jelit. Zadbaj o regularne pory posiłków aby nie sięgać po niezdrowe przekąski. Jedz dużo warzyw, owoców, węglowodanów, białka i tłuszczów roślinnych. Również trzeba zadbać o odpowiednią aktywność fizyczną, w celu spalenia zbędnego tłuszczu",
+    dietForGainWeight =
+      "Aby zdrowo przytyć trzeba zdecydowanie zadbać o pełnowartościowe białko w diecie. Najlepiej sięgać po białko pochodzenia zwierzęcego: chude mięso, ryby, jaja, jogurty naturalne, biały ser. Dla wegan i wegetarian dobrej jakości źródła białka znajdą się w tofu, gotowanych nasionach roślin strączkowych, orzechach i kaszach. Dieta powinna zawierać też odpowiednią ilość witamin, minerałów i makroelementów. Pamiętać również trzeba o ćwiczeniach fizycznych w celu nabrania masy mięśniowej",
+    diet = isLostWeight ? dietForLoseWeight : dietForGainWeight;
 
   personInfoBMITargP.forEach((p) => (p.style.color = targStatusColor));
   personInfoBMIP.forEach((p) => (p.style.color = statusColor));
@@ -67,39 +69,23 @@ export function showResults(
   personImg.src = getImage(gender, status);
   personTargImg.src = getImage(gender, targStatus);
   personImg.alt = `
-    Kolorowa sylwetka ${genderDisplay
+    Sylwetka ${genderDisplay
       .replace("a", "y")
       .toLowerCase()} zaklasyfikowywana jako: ${status}
   `;
   personTargImg.alt = `
-    Kolorowa sylwetka ${genderDisplay
+    Sylwetka ${genderDisplay
       .replace("a", "y")
       .toLowerCase()} zaklasyfikowywana jako: ${targStatus}
   `;
 
-  resultsBtn.addEventListener("click", () => {
-    const main = document.querySelector(`.calculator`);
-    window.scrollTo({
-      top: main.getBoundingClientRect().top + window.pageYOffset,
-      behavior: "smooth",
-    });
-  });
-
-  const loseWeight = ["spalonych", "zrzuconych", "zrzuconej"];
-  const gainWeight = ["dodatkowych", "przybranych", "przybranej"];
+  resultsBtn.addEventListener("click", scrollToMain);
 
   diffWeightSpan.forEach((span) => {
-    if (isLostWeight) span.textContent = loseWeight.shift();
-    else span.textContent = gainWeight.shift();
+    isLostWeight
+      ? (span.textContent = loseWeight.shift())
+      : (span.textContent = gainWeight.shift());
   });
-
-  let diet = "";
-  if (isLostWeight)
-    diet =
-      "Aby zdrowo schudnąć trzeba zadabać o zbilansowaną diete. Niezbędne będzie picie odpowiedniej ilości wody, 2 litry to średnia ilość płynów, które powinien przyswajać człowek w ciągu jednego dnia. Woda wypełni żołądek i pomoże przyspieszyć przemianę materii. Zpożywaj produkty bogate w błonnik - ta substancja wspomaga prace jelit. Zadbaj o regularne pory posiłków aby nie sięgać po niezdrowe przekąski. Jedz dużo warzyw, owoców, węglowodanów, białka i tłuszczów roślinnych. Również trzeba zadbać o odpowiednią aktywność fizyczną, w celu spalenia zbędnego tłuszczu";
-  else
-    diet =
-      "Aby zdrowo przytyć trzeba zdecydowanie zadbać o pełnowartościowe białko w diecie. Najlepiej sięgać po białko pochodzenia zwierzęcego: chude mięso, ryby, jaja, jogurty naturalne, biały ser. Dla wegan i wegetarian dobrej jakości źródła białka znajdą się w tofu, gotowanych nasionach roślin strączkowych, orzechach i kaszach. Dieta powinna zawierać też odpowiednią ilość witamin, minerałów i makroelementów. Pamiętać również trzeba o ćwiczeniach fizycznych w celu nabrania masy mięśniowej";
 
   setComponentInfo("personInfo", "status", status);
   setComponentInfo("personInfo", "age", `${age} lat`);
@@ -270,5 +256,13 @@ export function showResults(
       color,
       hint,
     };
+  }
+
+  function scrollToMain() {
+    const main = document.querySelector(`.calculator`);
+    window.scrollTo({
+      top: main.getBoundingClientRect().top + window.pageYOffset,
+      behavior: "smooth",
+    });
   }
 }

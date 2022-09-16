@@ -1,4 +1,4 @@
-import { showResults } from "./showResults";
+import showResults from "./showResults";
 
 export function calculate(
   age,
@@ -10,29 +10,25 @@ export function calculate(
   startDate,
   endDate
 ) {
-  const BMI = Math.round((weight / (height * height)) * 100000) / 10;
-  const targBMI = Math.round((targWeight / (height * height)) * 100000) / 10;
-  const minWeight = Math.round(0.00185 * Math.pow(height, 2));
-  const maxWeight = Math.round(0.0025 * Math.pow(height, 2));
-  const weightRange = `${minWeight} kg - ${maxWeight} kg`;
-
-  const activityStatus = getActivityStatus(activity);
+  const BMI = Math.round((weight / (height * height)) * 100000) / 10,
+    targBMI = Math.round((targWeight / (height * height)) * 100000) / 10,
+    minWeight = Math.round(0.00185 * Math.pow(height, 2)),
+    maxWeight = Math.round(0.0025 * Math.pow(height, 2)),
+    weightRange = `${minWeight} kg - ${maxWeight} kg`,
+    isLostWeight = weight >= targWeight,
+    diffWeight = Math.abs(weight - targWeight),
+    activityStatus = getActivityStatus(activity);
 
   let days = Math.floor((endDate - startDate) / 86400000);
   days === 0 ? (days = 1) : days;
 
-  const isLostWeight = weight >= targWeight;
-  const diffWeight = Math.abs(weight - targWeight);
-  const diffWeightDay = Math.round((diffWeight / days) * 100) / 100;
-
-  let BMR;
-
-  if (gender === "male")
-    BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age + 5);
-  else BMR = Math.round(9.99 * weight + 6.25 * height - 4.92 * age - 161);
-
-  const CPM = Math.floor(BMR * getPAL(activity));
-  const diffCalories = Math.round((diffWeight * 7700) / days);
+  const diffWeightDay = Math.round((diffWeight / days) * 100) / 100,
+    BMR =
+      gender === "male"
+        ? Math.round(9.99 * weight + 6.25 * height - 4.92 * age + 5)
+        : Math.round(9.99 * weight + 6.25 * height - 4.92 * age - 161),
+    CPM = Math.floor(BMR * getPAL(activity)),
+    diffCalories = Math.round((diffWeight * 7700) / days);
 
   showResults(
     age,

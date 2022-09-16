@@ -1,24 +1,24 @@
 import { calculate } from "./calculate";
 import { gender } from "./getGender";
 
-export function validateForm() {
-  const ageInputValue = document.querySelector("#ageValue");
-  const weightInputValue = document.querySelector("#weightValue");
-  const heightInputValue = document.querySelector("#heightValue");
-  const selectListItem = document.querySelectorAll(".select__listItem");
-  const selectValue = document.querySelector(".select__p");
-  const targWeightInputValue = document.querySelector("#targWeightValue");
-  const startDateInputValue = document.querySelector("#startDate");
-  const endDateInputValue = document.querySelector("#endDate");
-  const errorPInputs = [...document.querySelectorAll(".fieldset__inputError")];
+export default function validateForm() {
+  const ageInputValue = document.querySelector("#ageValue"),
+    weightInputValue = document.querySelector("#weightValue"),
+    heightInputValue = document.querySelector("#heightValue"),
+    selectListItem = document.querySelectorAll(".select__listItem"),
+    selectValue = document.querySelector(".select__p"),
+    targWeightInputValue = document.querySelector("#targWeightValue"),
+    startDateInputValue = document.querySelector("#startDate"),
+    endDateInputValue = document.querySelector("#endDate"),
+    errorPInputs = [...document.querySelectorAll(".fieldset__inputError")];
 
-  let activity = "";
-  let startDate = "";
-  let endDate = "";
+  let activity = "",
+    startDate = "",
+    endDate = "";
 
   selectListItem.forEach((li) => {
     if (li.textContent === selectValue.textContent) {
-      activity = li.value;
+      activity = li.dataset.value;
     }
   });
 

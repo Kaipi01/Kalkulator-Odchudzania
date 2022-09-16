@@ -13,6 +13,7 @@ export function getGender(btn) {
     radioBtnFemale.classList.remove("radioBtn--active");
     gender = "male";
   }
+  return gender;
 }
 
 export { gender };
